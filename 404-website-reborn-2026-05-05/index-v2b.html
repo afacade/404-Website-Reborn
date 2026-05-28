@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 [Come Find Me] — Roster (v2b)</title>
+  <meta name="description" content="One studio for video, brand, web, SEO, and ads." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    /* ===== V2B: One-Stop · The Roster ===== */
+    body.v2b { background: #000; color: #fff; }
+    .v2b .nav { mix-blend-mode: normal; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
+    .v2b .nav__logo sup { color: var(--cyan); }
+    .v2b .nav__links a:hover { color: var(--cyan); }
+    .v2b .footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); }
+    .v2b-mock { position: fixed; top: 80px; right: 16px; z-index: 50; padding: 8px 14px; border-radius: 999px; background: rgba(255,205,46,0.12); border: 1px solid rgba(255,205,46,0.4); color: var(--yellow); font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* Hero — split */
+    .v2b-hero {
+      padding: 140px var(--pad) 60px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+    .v2b-hero__pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px;
+      border: 1px solid rgba(76,233,255,0.4);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 24px;
+    }
+    .v2b-hero__pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .v2b-hero__headline {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 7.5vw, 112px);
+      line-height: 0.92; letter-spacing: -0.025em; text-transform: uppercase;
+      max-width: 14ch;
+    }
+    .v2b-hero__headline em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--cyan), var(--yellow));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .v2b-hero__sub { font-size: 17px; line-height: 1.6; color: var(--grey-300); max-width: 44ch; }
+    .v2b-hero__cta { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .v2b-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 24px; border-radius: 6px;
+      font-family: var(--font-display); font-size: 12px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .v2b-btn--primary { background: var(--cyan); color: #000; }
+    .v2b-btn--primary:hover { background: var(--yellow); }
+    .v2b-btn--ghost { border: 1px solid rgba(255,255,255,0.25); color: #fff; }
+    .v2b-btn--ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+    @media (max-width: 900px) { .v2b-hero { grid-template-columns: 1fr; gap: 30px; } }
+
+    /* Work mosaic */
+    .v2b-mosaic {
+      max-width: var(--maxw); margin: 0 auto;
+      padding: 40px var(--pad) 80px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 280px;
+      gap: 12px;
+    }
+    .v2b-tile {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--grey-900);
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+    .v2b-tile:hover { transform: translateY(-4px); }
+    .v2b-tile::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
+    }
+    .v2b-tile__inner {
+      position: absolute; inset: 0; z-index: 2;
+      padding: 22px 24px;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+    }
+    .v2b-tile__lane {
+      align-self: flex-start;
+      padding: 5px 11px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(76,233,255,0.5);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cyan);
+      backdrop-filter: blur(6px);
+    }
+    .v2b-tile__name { font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 32px); text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+    .v2b-tile__client { margin-top: 8px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-300); }
+    .v2b-tile--01 { grid-column: span 4; grid-row: span 2; }
+    .v2b-tile--02 { grid-column: span 2; grid-row: span 1; }
+    .v2b-tile--03 { grid-column: span 2; grid-row: span 1; }
+    .v2b-tile--04 { grid-column: span 3; grid-row: span 1; }
+    .v2b-tile--05 { grid-column: span 3; grid-row: span 1; }
+    @media (max-width: 900px) {
+      .v2b-mosaic { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+      .v2b-tile, .v2b-tile--01, .v2b-tile--02, .v2b-tile--03, .v2b-tile--04, .v2b-tile--05 { grid-column: span 1; grid-row: span 1; }
+    }
+
+    /* Comparison band */
+    .v2b-compare { max-width: var(--maxw); margin: 0 auto; padding: 80px var(--pad); }
+    .v2b-eyebrow { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); margin-bottom: 16px; }
+    .v2b-compare__title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1; text-transform: uppercase; max-width: 18ch; }
+    .v2b-compare__grid { margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; }
+    .v2b-col { background: #000; padding: 36px 32px; }
+    .v2b-col__label { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+    .v2b-col--us .v2b-col__label { color: var(--cyan); }
+    .v2b-col__title { margin-top: 14px; font-family: var(--font-display); font-size: 28px; text-transform: uppercase; letter-spacing: -0.01em; }
+    .v2b-col__list { margin-top: 22px; list-style: none; }
+    .v2b-col__list li { padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; gap: 12px; align-items: baseline; font-size: 15px; line-height: 1.55; color: var(--grey-300); }
+    .v2b-col__list li::before { font-family: "JetBrains Mono", monospace; font-size: 12px; flex-shrink: 0; }
+    .v2b-col--them li::before { content: "×"; color: var(--grey-500); }
+    .v2b-col--us li::before { content: "+"; color: var(--cyan); font-weight: 700; }
+    @media (max-width: 720px) { .v2b-compare__grid { grid-template-columns: 1fr; } }
+
+    /* Stats */
+    .v2b-stats { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .v2b-stat { padding: 32px 24px; border-right: 1px solid rgba(255,255,255,0.08); }
+    .v2b-stat:last-child { border-right: none; }
+    .v2b-stat__num { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1; }
+    .v2b-stat__num em { font-style: normal; color: var(--cyan); }
+    .v2b-stat__label { margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-500); }
+    @media (max-width: 720px) { .v2b-stats { grid-template-columns: 1fr 1fr; } .v2b-stat { border-bottom: 1px solid rgba(255,255,255,0.08); } }
+
+    /* CTA */
+    .v2b-cta {
+      margin: 60px var(--pad) 0;
+      padding: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 80px);
+      max-width: var(--maxw);
+      margin-left: auto; margin-right: auto;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--yellow) 100%);
+      color: #000;
+      border-radius: 24px;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    }
+    .v2b-cta__title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 72px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; }
+    .v2b-cta__sub { margin-top: 16px; font-size: 16px; line-height: 1.55; max-width: 40ch; }
+    .v2b-cta__btn { justify-self: end; padding: 20px 36px; background: #000; color: #fff; border-radius: 8px; font-family: var(--font-display); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; transition: transform 0.2s; }
+    .v2b-cta__btn:hover { transform: translateY(-2px); }
+    @media (max-width: 720px) { .v2b-cta { grid-template-columns: 1fr; } .v2b-cta__btn { justify-self: start; } }
+  </style>
+</head>
+<body class="v2b">
+
+<div class="v2b-mock">Brainstorm v2b · The Roster</div>
+
+<nav class="nav">
+  <a href="index.html" class="nav__logo">404<sup>*</sup></a>
+  <button class="nav__toggle" aria-label="Menu">Menu</button>
+  <ul class="nav__links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="v2b-hero">
+  <div>
+    <span class="v2b-hero__pill">Video · Brand · Web · SEO · Ads</span>
+    <h1 class="v2b-hero__headline">Everything you'd hire <em>five vendors</em> for. Done by one team.</h1>
+  </div>
+  <div>
+    <p class="v2b-hero__sub">One creative director. One project lead. One invoice. We edit the cut, build the brand, ship the site, and run the campaigns — with the receipts to back it up.</p>
+    <div class="v2b-hero__cta">
+      <a class="v2b-btn v2b-btn--primary" href="portfolio.html">See the work →</a>
+      <a class="v2b-btn v2b-btn--ghost" href="contact.html">Book intro call</a>
+    </div>
+  </div>
+</section>
+
+<section class="v2b-mosaic">
+  <!-- REPLACE: shared home asset — Nick Emmanwori NFL edit. 1600x1100. -->
+  <a class="v2b-tile v2b-tile--01" href="portfolio.html" style="background-image: url('assets/home/home-lane-01-videography-nick-emmanwori-nfl.jpg');">
+    <div class="v2b-tile__inner">
+      <span class="v2b-tile__lane">// Videography · Edit</span>
+      <div>
+        <h3 class="v2b-tile__name">NFL Combine & Draft Reel</h3>
+        <span class="v2b-tile__client">Featured · Nick Emmanwori</span>
+      </div>
+    </div>
+  </a>
+  <!-- REPLACE: shared home asset — Sujin selected works. 1100x700. -->
+  <a class="v2b-tile v2b-tile--02" href="portfolio.html" style="background-image: url('assets/home/home-lane-02-brand-sujin-graphic-works.jpg');">
+    <div class="v2b-tile__inner">
+      <span class="v2b-tile__lane">// Graphic Design</span>
+      <div>
+        <h3 class="v2b-tile__name">Sujin Selected Works</h3>
+        <span class="v2b-tile__client">Editorial & Identity</span>
+      </div>
+    </div>
+  </a>
+  <!-- REPLACE: shared home asset — Studio photoshoots. 1100x700. -->
+  <a class="v2b-tile v2b-tile--03" href="portfolio.html" style="background-image: url('assets/home/home-lane-05-photo-studio-photoshoots.jpg');">
+    <div class="v2b-tile__inner">
+      <span class="v2b-tile__lane">// Photography</span>
+      <div>
+        <h3 class="v2b-tile__name">Studio Photoshoots</h3>
+        <span class="v2b-tile__client">Campaign & UGC</span>
+      </div>
+    </div>
+  </a>
+  <!-- REPLACE: shared home asset — SGF Sourcing platform. 1400x700. -->
+  <a class="v2b-tile v2b-tile--04" href="portfolio.html" style="background-image: url('assets/home/home-lane-03-web-sgf-sourcing-platform.jpg');">
+    <div class="v2b-tile__inner">
+      <span class="v2b-tile__lane">// Web · Commerce</span>
+      <div>
+        <h3 class="v2b-tile__name">SGF Sourcing Platform</h3>
+        <span class="v2b-tile__client">Featured · Leslie / SGF</span>
+      </div>
+    </div>
+  </a>
+  <!-- REPLACE: shared home asset — SEO indexable imagery. 1400x700. -->
+  <a class="v2b-tile v2b-tile--05" href="portfolio.html" style="background-image: url('assets/home/home-lane-04-seo-indexable-imagery-library.jpg');">
+    <div class="v2b-tile__inner">
+      <span class="v2b-tile__lane">// SEO · Technical</span>
+      <div>
+        <h3 class="v2b-tile__name">Indexable Visual Library</h3>
+        <span class="v2b-tile__client">Imagery & Schema</span>
+      </div>
+    </div>
+  </a>
+</section>
+
+<section class="v2b-compare">
+  <div class="v2b-eyebrow">// Why one studio</div>
+  <h2 class="v2b-compare__title">Five vendors, or one team that ships.</h2>
+  <div class="v2b-compare__grid">
+    <div class="v2b-col v2b-col--them">
+      <div class="v2b-col__label">// The agency stack</div>
+      <h3 class="v2b-col__title">Five vendors</h3>
+      <ul class="v2b-col__list">
+        <li>Five briefs to write, five contracts to sign</li>
+        <li>Brand, web, video, and ads built in silos</li>
+        <li>Hand-offs that stall for weeks per discipline</li>
+        <li>Five invoices, none of them tied to a metric</li>
+        <li>You become the project manager by default</li>
+      </ul>
+    </div>
+    <div class="v2b-col v2b-col--us">
+      <div class="v2b-col__label">// 404 [Come Find Me]</div>
+      <h3 class="v2b-col__title">One team</h3>
+      <ul class="v2b-col__list">
+        <li>One brief covers all five disciplines</li>
+        <li>Brand, web, video, and ads built together</li>
+        <li>Weekly demos — the work moves on a single calendar</li>
+        <li>One invoice, scoped to the outcome you signed for</li>
+        <li>You stay focused on the business</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="v2b-stats">
+  <div class="v2b-stat"><div class="v2b-stat__num"><em>5</em></div><div class="v2b-stat__label">Disciplines, in-house</div></div>
+  <div class="v2b-stat"><div class="v2b-stat__num"><em>1</em></div><div class="v2b-stat__label">Project lead per client</div></div>
+  <div class="v2b-stat"><div class="v2b-stat__num"><em>14d</em></div><div class="v2b-stat__label">Avg. first delivery</div></div>
+  <div class="v2b-stat"><div class="v2b-stat__num"><em>92%</em></div><div class="v2b-stat__label">Repeat & referral</div></div>
+</section>
+
+<section class="v2b-cta">
+  <div>
+    <h2 class="v2b-cta__title">One brief.<br>One team.<br>Five disciplines.</h2>
+    <p class="v2b-cta__sub">Tell us what you're launching. We'll respond in two business days with the team, the timeline, and the price.</p>
+  </div>
+  <a class="v2b-cta__btn" href="contact.html">Start a project →</a>
+</section>
+
+<footer class="footer" style="margin-top:60px;">
+  <div class="footer__col">404 [Come Find Me]<br>Digital Design &amp; Marketing<br>Est. 2024</div>
+  <div class="footer__col">
+    <a href="portfolio.html">Portfolio</a><br>
+    <a href="about.html">About</a><br>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer__col footer__col--right">
+    <a href="#">Instagram</a><br><a href="#">YouTube</a><br>404comefindme<br>@gmail.com
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

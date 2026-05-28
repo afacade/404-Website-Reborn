@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 [Come Find Me] — System (v2c)</title>
+  <meta name="description" content="One studio for video, brand, web, SEO, and ads — engineered to ship." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    /* ===== V2C: One-Stop · The System ===== */
+    body.v2c { background: #000; color: #fff; }
+    .v2c .nav { mix-blend-mode: normal; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
+    .v2c .nav__logo sup { color: var(--cyan); }
+    .v2c .nav__links a:hover { color: var(--cyan); }
+    .v2c .footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); }
+    .v2c-mock { position: fixed; top: 80px; right: 16px; z-index: 50; padding: 8px 14px; border-radius: 999px; background: rgba(255,205,46,0.12); border: 1px solid rgba(255,205,46,0.4); color: var(--yellow); font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* Hero — centered */
+    .v2c-hero { position: relative; padding: 140px var(--pad) 60px; max-width: var(--maxw); margin: 0 auto; text-align: center; }
+    .v2c-hero__pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px;
+      border: 1px solid rgba(76,233,255,0.4);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 32px;
+    }
+    .v2c-hero__pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .v2c-hero__headline {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 8vw, 132px);
+      line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase;
+      max-width: 18ch; margin: 0 auto;
+    }
+    .v2c-hero__sub { margin: 32px auto 0; max-width: 60ch; font-size: 18px; line-height: 1.55; color: var(--grey-300); }
+    .v2c-hero__cta { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .v2c-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 6px;
+      font-family: var(--font-display); font-size: 12px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .v2c-btn--primary { background: var(--cyan); color: #000; }
+    .v2c-btn--primary:hover { background: var(--yellow); }
+    .v2c-btn--ghost { border: 1px solid rgba(255,255,255,0.25); color: #fff; }
+    .v2c-btn--ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* Marquee */
+    .v2c-marquee {
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 22px 0; background: #000;
+    }
+    .v2c-marquee__track {
+      display: flex; gap: 60px; white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 32px);
+      letter-spacing: -0.01em; text-transform: uppercase;
+      animation: v2c-scroll 28s linear infinite;
+    }
+    .v2c-marquee__track span { color: var(--grey-500); }
+    .v2c-marquee__track span em { font-style: normal; color: var(--cyan); margin-right: 60px; }
+    @keyframes v2c-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Matrix */
+    .v2c-matrix { max-width: var(--maxw); margin: 0 auto; padding: 80px var(--pad); }
+    .v2c-eyebrow { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); margin-bottom: 16px; }
+    .v2c-matrix__title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1; text-transform: uppercase; max-width: 22ch; }
+    .v2c-matrix__title em { font-style: normal; color: var(--cyan); }
+    .v2c-matrix__grid { margin-top: 50px; display: grid; grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: auto; gap: 14px; }
+    .v2c-cell {
+      display: block;
+      position: relative;
+      border-radius: 14px; overflow: hidden;
+      min-height: 320px;
+      background-color: var(--grey-900);
+      background-size: cover; background-position: center;
+      transition: transform 0.4s;
+      cursor: pointer;
+    }
+    .v2c-cell:hover { transform: translateY(-4px); }
+    .v2c-cell::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%); }
+    .v2c-cell__inner { position: relative; z-index: 2; padding: 28px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+    .v2c-cell__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .v2c-cell__lane {
+      padding: 5px 11px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(76,233,255,0.5);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cyan);
+      backdrop-filter: blur(6px);
+    }
+    .v2c-cell__num { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; color: var(--grey-500); }
+    .v2c-cell__name { font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 36px); text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+    .v2c-cell__client { margin-top: 8px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-300); }
+    .v2c-cell--01 { grid-column: span 2; grid-row: span 2; min-height: 520px; }
+    .v2c-cell--02, .v2c-cell--03, .v2c-cell--04, .v2c-cell--05 { grid-column: span 1; }
+    @media (max-width: 900px) {
+      .v2c-matrix__grid { grid-template-columns: 1fr; }
+      .v2c-cell, .v2c-cell--01, .v2c-cell--02, .v2c-cell--03, .v2c-cell--04, .v2c-cell--05 { grid-column: span 1; min-height: 280px; }
+    }
+
+    /* Flow */
+    .v2c-flow { max-width: var(--maxw); margin: 0 auto; padding: 80px var(--pad); border-top: 1px solid rgba(255,255,255,0.1); }
+    .v2c-flow__title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.02em; line-height: 1; text-transform: uppercase; max-width: 24ch; }
+    .v2c-flow__title em { font-style: normal; color: var(--cyan); }
+    .v2c-flow__grid { margin-top: 50px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+    .v2c-node { padding: 24px 18px 24px 24px; border-left: 1px solid rgba(255,255,255,0.1); position: relative; }
+    .v2c-node:first-child { border-left: 2px solid var(--cyan); }
+    .v2c-node:not(:first-child)::before { content: ""; position: absolute; left: -1px; top: 50%; width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--cyan); transform: translate(-50%, -50%); }
+    .v2c-node__num { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; }
+    .v2c-node__name { margin-top: 10px; font-family: var(--font-display); font-size: 20px; text-transform: uppercase; letter-spacing: -0.01em; }
+    .v2c-node__body { margin-top: 8px; font-size: 13px; line-height: 1.55; color: var(--grey-300); }
+    @media (max-width: 900px) { .v2c-flow__grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .v2c-flow__grid { grid-template-columns: 1fr; } }
+
+    /* Stats */
+    .v2c-stats { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .v2c-stat { padding: 32px 24px; border-right: 1px solid rgba(255,255,255,0.08); }
+    .v2c-stat:last-child { border-right: none; }
+    .v2c-stat__num { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1; }
+    .v2c-stat__num em { font-style: normal; color: var(--cyan); }
+    .v2c-stat__label { margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-500); }
+    @media (max-width: 720px) { .v2c-stats { grid-template-columns: 1fr 1fr; } .v2c-stat { border-bottom: 1px solid rgba(255,255,255,0.08); } }
+
+    /* CTA */
+    .v2c-cta {
+      margin: 80px var(--pad) 0;
+      padding: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 80px);
+      max-width: var(--maxw); margin-left: auto; margin-right: auto;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--yellow) 100%);
+      color: #000; border-radius: 24px;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    }
+    .v2c-cta__title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 72px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; }
+    .v2c-cta__sub { margin-top: 16px; font-size: 16px; line-height: 1.55; max-width: 40ch; }
+    .v2c-cta__btn { justify-self: end; padding: 20px 36px; background: #000; color: #fff; border-radius: 8px; font-family: var(--font-display); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; transition: transform 0.2s; }
+    .v2c-cta__btn:hover { transform: translateY(-2px); }
+    @media (max-width: 720px) { .v2c-cta { grid-template-columns: 1fr; } .v2c-cta__btn { justify-self: start; } }
+  </style>
+</head>
+<body class="v2c">
+
+<div class="v2c-mock">Brainstorm v2c · The System</div>
+
+<nav class="nav">
+  <a href="index.html" class="nav__logo">404<sup>*</sup></a>
+  <button class="nav__toggle" aria-label="Menu">Menu</button>
+  <ul class="nav__links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="v2c-hero">
+  <span class="v2c-hero__pill">The 404 system · one team, five lanes</span>
+  <h1 class="v2c-hero__headline">A studio engineered to ship video, brand, web, SEO &amp; ads.</h1>
+  <p class="v2c-hero__sub">Most agencies sell a discipline. We sell the whole stack — produced by senior operators, scoped to one brief, shipped on a single calendar.</p>
+  <div class="v2c-hero__cta">
+    <a class="v2c-btn v2c-btn--primary" href="portfolio.html">See the work →</a>
+    <a class="v2c-btn v2c-btn--ghost" href="contact.html">Book intro call</a>
+  </div>
+</section>
+
+<section class="v2c-matrix">
+  <div class="v2c-eyebrow">// 01 Capability matrix</div>
+  <h2 class="v2c-matrix__title">A featured commission from <em>every lane.</em></h2>
+  <div class="v2c-matrix__grid">
+    <!-- REPLACE: shared home asset — Nick Emmanwori NFL edit. 1600x1200. -->
+    <a class="v2c-cell v2c-cell--01" href="portfolio.html" style="background-image: url('assets/home/home-lane-01-videography-nick-emmanwori-nfl.jpg');">
+      <div class="v2c-cell__inner">
+        <div class="v2c-cell__top">
+          <span class="v2c-cell__lane">// Videography · Edit</span>
+          <span class="v2c-cell__num">N° 01</span>
+        </div>
+        <div>
+          <h3 class="v2c-cell__name">NFL Combine &amp; Draft Edit Reel</h3>
+          <span class="v2c-cell__client">Featured · Nick Emmanwori</span>
+        </div>
+      </div>
+    </a>
+    <!-- REPLACE: shared home asset — Sujin selected works. -->
+    <a class="v2c-cell v2c-cell--02" href="portfolio.html" style="background-image: url('assets/home/home-lane-02-brand-sujin-graphic-works.jpg');">
+      <div class="v2c-cell__inner">
+        <div class="v2c-cell__top">
+          <span class="v2c-cell__lane">// Graphic Design</span>
+          <span class="v2c-cell__num">N° 02</span>
+        </div>
+        <div>
+          <h3 class="v2c-cell__name">Sujin Selected Works</h3>
+          <span class="v2c-cell__client">Editorial &amp; Identity</span>
+        </div>
+      </div>
+    </a>
+    <!-- REPLACE: shared home asset — SGF Sourcing. -->
+    <a class="v2c-cell v2c-cell--03" href="portfolio.html" style="background-image: url('assets/home/home-lane-03-web-sgf-sourcing-platform.jpg');">
+      <div class="v2c-cell__inner">
+        <div class="v2c-cell__top">
+          <span class="v2c-cell__lane">// Web · Commerce</span>
+          <span class="v2c-cell__num">N° 03</span>
+        </div>
+        <div>
+          <h3 class="v2c-cell__name">SGF Sourcing Platform</h3>
+          <span class="v2c-cell__client">Featured · Leslie / SGF</span>
+        </div>
+      </div>
+    </a>
+    <!-- REPLACE: shared home asset — SEO indexable imagery. -->
+    <a class="v2c-cell v2c-cell--04" href="portfolio.html" style="background-image: url('assets/home/home-lane-04-seo-indexable-imagery-library.jpg');">
+      <div class="v2c-cell__inner">
+        <div class="v2c-cell__top">
+          <span class="v2c-cell__lane">// SEO · Technical</span>
+          <span class="v2c-cell__num">N° 04</span>
+        </div>
+        <div>
+          <h3 class="v2c-cell__name">Indexable Visual Library</h3>
+          <span class="v2c-cell__client">Imagery &amp; Schema</span>
+        </div>
+      </div>
+    </a>
+    <!-- REPLACE: shared home asset — Studio photoshoots. -->
+    <a class="v2c-cell v2c-cell--05" href="portfolio.html" style="background-image: url('assets/home/home-lane-05-photo-studio-photoshoots.jpg');">
+      <div class="v2c-cell__inner">
+        <div class="v2c-cell__top">
+          <span class="v2c-cell__lane">// Photography</span>
+          <span class="v2c-cell__num">N° 05</span>
+        </div>
+        <div>
+          <h3 class="v2c-cell__name">Studio Photoshoots</h3>
+          <span class="v2c-cell__client">Campaign &amp; UGC</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="v2c-flow">
+  <div class="v2c-eyebrow">// 02 The system</div>
+  <h2 class="v2c-flow__title">From brief to launch — <em>one calendar.</em></h2>
+  <div class="v2c-flow__grid">
+    <div class="v2c-node">
+      <div class="v2c-node__num">01 / BRIEF</div>
+      <h4 class="v2c-node__name">Scope &amp; outcome</h4>
+      <p class="v2c-node__body">One discovery call. We pick the metric and the disciplines required to move it.</p>
+    </div>
+    <div class="v2c-node">
+      <div class="v2c-node__num">02 / BUILD</div>
+      <h4 class="v2c-node__name">Brand &amp; site</h4>
+      <p class="v2c-node__body">Identity, design system, and site shipped first — the platform everything else lives on.</p>
+    </div>
+    <div class="v2c-node">
+      <div class="v2c-node__num">03 / SHOOT</div>
+      <h4 class="v2c-node__name">Video &amp; photo</h4>
+      <p class="v2c-node__body">Scripts to edit. One production crew that already knows the brand it's shooting for.</p>
+    </div>
+    <div class="v2c-node">
+      <div class="v2c-node__num">04 / RANK</div>
+      <h4 class="v2c-node__name">SEO &amp; content</h4>
+      <p class="v2c-node__body">Technical audit, on-page system, and indexable imagery built into the same site.</p>
+    </div>
+    <div class="v2c-node">
+      <div class="v2c-node__num">05 / SCALE</div>
+      <h4 class="v2c-node__name">Ads &amp; iterate</h4>
+      <p class="v2c-node__body">Paid creative on Meta, TikTok, and Google — tested weekly against the metric we picked.</p>
+    </div>
+  </div>
+</section>
+
+<section class="v2c-stats">
+  <div class="v2c-stat"><div class="v2c-stat__num"><em>5</em></div><div class="v2c-stat__label">Disciplines, in-house</div></div>
+  <div class="v2c-stat"><div class="v2c-stat__num"><em>1</em></div><div class="v2c-stat__label">Project lead per client</div></div>
+  <div class="v2c-stat"><div class="v2c-stat__num"><em>14d</em></div><div class="v2c-stat__label">Avg. first delivery</div></div>
+  <div class="v2c-stat"><div class="v2c-stat__num"><em>92%</em></div><div class="v2c-stat__label">Repeat &amp; referral</div></div>
+</section>
+
+<section class="v2c-cta">
+  <div>
+    <h2 class="v2c-cta__title">One brief.<br>One team.<br>The whole stack.</h2>
+    <p class="v2c-cta__sub">Tell us what you're launching. We'll respond in two business days with the team, the timeline, and the price.</p>
+  </div>
+  <a class="v2c-cta__btn" href="contact.html">Start a project →</a>
+</section>
+
+<footer class="footer">
+  <div class="footer__col">404 [Come Find Me]<br>Digital Design &amp; Marketing<br>Est. 2024</div>
+  <div class="footer__col">
+    <a href="portfolio.html">Portfolio</a><br>
+    <a href="about.html">About</a><br>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer__col footer__col--right">
+    <a href="#">Instagram</a><br><a href="#">YouTube</a><br>404comefindme<br>@gmail.com
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

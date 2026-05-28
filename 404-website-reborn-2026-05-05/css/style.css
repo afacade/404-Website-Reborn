@@ -195,6 +195,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0 auto;
 }
 
+/* ===== Asset placeholders =====
+   If an /assets image is missing the element falls back to a dark block.
+   When the image loads (via the inline style="background-image: url('…')")
+   it covers the dark color. Per-element rules elsewhere in this file own
+   background-size / background-position, so we don't set those here. */
+.v2a-lane__work,
+.v2-feature__img,
+.pc-featured__img,
+.pf-card,
+.page-hero__bg,
+.about-feature,
+.team-card__photo,
+.services-preview__img {
+  background-color: var(--grey-900);
+}
+
 /* ===== Home: featured grid ===== */
 .feature-grid {
   max-width: var(--maxw);

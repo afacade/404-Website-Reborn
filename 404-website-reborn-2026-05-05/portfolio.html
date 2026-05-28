@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — 404 [Come Find Me]</title>
+  <meta name="description" content="Selected work across video, brand, web, SEO, and ads. Read straight through, or jump to a lane." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    /* ===== Portfolio · Lane-by-Lane ===== */
+    body.pf { background: #000; color: #fff; }
+    .pf .nav { mix-blend-mode: normal; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
+    .pf .nav__logo sup { color: var(--cyan); }
+    .pf .nav__links a:hover { color: var(--cyan); }
+    .pf .footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* Hero */
+    .pf-hero {
+      max-width: var(--maxw); margin: 0 auto;
+      padding: 140px var(--pad) 40px;
+    }
+    .pf-eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--cyan);
+    }
+    .pf-hero__title {
+      margin-top: 18px;
+      font-family: var(--font-display);
+      font-size: clamp(64px, 14vw, 220px);
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+      text-transform: uppercase;
+    }
+    .pf-hero__title span {
+      background: linear-gradient(120deg, var(--cyan), var(--yellow));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .pf-hero__sub {
+      margin-top: 28px;
+      font-size: 17px; line-height: 1.6;
+      color: var(--grey-300);
+      max-width: 64ch;
+    }
+
+    /* Lane navigator chips */
+    .pf-nav {
+      max-width: var(--maxw); margin: 0 auto;
+      padding: 32px var(--pad);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex; flex-wrap: wrap; gap: 32px;
+    }
+    .pf-nav a {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      font-family: var(--font-display);
+      font-size: 14px; letter-spacing: -0.005em;
+      text-transform: uppercase;
+      color: var(--grey-500);
+      transition: color 0.2s;
+    }
+    .pf-nav a span {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; letter-spacing: 0.12em;
+      color: var(--grey-500);
+    }
+    .pf-nav a:hover, .pf-nav a.is-active { color: var(--cyan); }
+    .pf-nav a:hover span, .pf-nav a.is-active span { color: var(--cyan); }
+
+    /* Lane */
+    .pf-lane {
+      max-width: var(--maxw); margin: 0 auto;
+      padding: 80px var(--pad);
+      scroll-margin-top: 60px;
+    }
+    .pf-lane__head {
+      display: grid; grid-template-columns: 80px 1.2fr 1.4fr;
+      gap: 40px; align-items: start;
+      margin-bottom: 40px;
+    }
+    .pf-lane__num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; letter-spacing: 0.14em;
+      color: var(--cyan);
+      padding-top: 14px;
+    }
+    .pf-lane__title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 56px);
+      line-height: 1; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .pf-lane__copy {
+      font-size: 15px; line-height: 1.6;
+      color: var(--grey-300);
+      max-width: 50ch;
+      margin-bottom: 18px;
+    }
+    .pf-lane__tags { list-style: none; }
+    .pf-lane__tags li {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.12em;
+      color: var(--grey-300);
+      text-transform: uppercase;
+      line-height: 2;
+    }
+    .pf-lane__tags li::before { content: "→ "; color: var(--cyan); }
+    @media (max-width: 900px) {
+      .pf-lane__head { grid-template-columns: 1fr; gap: 16px; }
+      .pf-lane__num { padding-top: 0; }
+    }
+
+    /* Work grid — featured layout (1 big + 2 small) */
+    .pf-grid--featured {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 14px;
+    }
+    .pf-grid--featured .pf-card--big {
+      aspect-ratio: 4 / 5;
+    }
+    .pf-grid--featured .pf-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+    }
+    .pf-grid--featured .pf-card--side {
+      aspect-ratio: 16 / 10;
+    }
+
+    /* Work grid — trio (3 equal) */
+    .pf-grid--trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .pf-grid--trio .pf-card {
+      aspect-ratio: 4 / 3;
+    }
+
+    @media (max-width: 720px) {
+      .pf-grid--featured, .pf-grid--trio { grid-template-columns: 1fr; }
+      .pf-grid--featured .pf-side { grid-template-columns: 1fr; }
+    }
+
+    /* Card */
+    .pf-card {
+      display: block;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background-color: var(--grey-900);
+      background-size: cover; background-position: center;
+      transition: transform 0.4s;
+      cursor: pointer;
+    }
+    .pf-card:hover { transform: translateY(-4px); }
+    .pf-card::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
+    }
+    .pf-card__inner {
+      position: absolute; inset: 0; z-index: 2;
+      padding: 22px 24px;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+    }
+    .pf-card__client {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; letter-spacing: 0.16em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .pf-card__name {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 26px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    /* CTA */
+    .pf-cta {
+      margin: 80px var(--pad) 0;
+      padding: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 80px);
+      max-width: var(--maxw);
+      margin-left: auto; margin-right: auto;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--yellow) 100%);
+      color: #000;
+      border-radius: 24px;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    }
+    .pf-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: 0.95; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .pf-cta__sub {
+      margin-top: 14px;
+      font-size: 16px; line-height: 1.55;
+      max-width: 40ch;
+    }
+    .pf-cta__btn {
+      justify-self: end;
+      padding: 20px 36px;
+      background: #000; color: #fff;
+      border-radius: 8px;
+      font-family: var(--font-display);
+      font-size: 14px; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: transform 0.2s;
+    }
+    .pf-cta__btn:hover { transform: translateY(-2px); }
+    @media (max-width: 720px) {
+      .pf-cta { grid-template-columns: 1fr; }
+      .pf-cta__btn { justify-self: start; }
+    }
+  </style>
+</head>
+<body class="pf">
+
+<nav class="nav">
+  <a href="index.html" class="nav__logo">404<sup>*</sup></a>
+  <button class="nav__toggle" aria-label="Menu">Menu</button>
+  <ul class="nav__links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="pf-hero">
+  <div class="pf-eyebrow">// Five lanes · One bench</div>
+  <h1 class="pf-hero__title">Port<span>folio.</span></h1>
+  <p class="pf-hero__sub">Read straight through, or jump to a lane. Each section pairs the capability with three to four pieces of recent work — what we do next to what it actually looks like.</p>
+</section>
+
+<!-- LANE NAVIGATOR -->
+<nav class="pf-nav">
+  <a href="#lane-01"><span>01</span> Videography</a>
+  <a href="#lane-02"><span>02</span> Brand &amp; Graphic</a>
+  <a href="#lane-03"><span>03</span> Websites</a>
+  <a href="#lane-04"><span>04</span> SEO</a>
+  <a href="#lane-05"><span>05</span> Photo &amp; Ads</a>
+</nav>
+
+<!-- LANE 01 · VIDEOGRAPHY -->
+<section id="lane-01" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 01</div>
+    <h2 class="pf-lane__title">Videography<br>&amp; Edit</h2>
+    <div>
+      <p class="pf-lane__copy">Long-form, social cutdowns, sports edits, and motion. Camera-ready scripts to delivery in 7&ndash;14 days. 4K, color-graded, music-licensed.</p>
+      <ul class="pf-lane__tags">
+        <li>NFL highlight reels</li>
+        <li>Brand films &amp; trailer reels</li>
+        <li>Music videos &amp; performance edits</li>
+        <li>Social cutdowns (9:16 / 1:1)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--featured">
+    <!-- REPLACE: Lane 01 featured · Nick Emmanwori — NFL Combine & Draft reel. 4:5 tall. 1200x1500. -->
+    <a class="pf-card pf-card--big" href="#" style="background-image: url('assets/portfolio/lane-01-featured-nick-emmanwori-nfl-reel.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Featured · Nick Emmanwori</span>
+        <h3 class="pf-card__name">NFL Combine &amp; Draft Reel</h3>
+      </div>
+    </a>
+    <div class="pf-side">
+      <!-- REPLACE: Lane 01 side · Get Ready music video. 16:10. 900x560. -->
+      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-01-side-01-ready-music-video.jpg');">
+        <div class="pf-card__inner">
+          <span class="pf-card__client">Get Ready</span>
+          <h3 class="pf-card__name">Ready? Music Video</h3>
+        </div>
+      </a>
+      <!-- REPLACE: Lane 01 side · Performance cutdown. 16:10. 900x560. -->
+      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-01-side-02-performance-cut.jpg');">
+        <div class="pf-card__inner">
+          <span class="pf-card__client">Cutdown</span>
+          <h3 class="pf-card__name">Performance Cut</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LANE 02 · BRAND & GRAPHIC -->
+<section id="lane-02" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 02</div>
+    <h2 class="pf-lane__title">Brand<br>&amp; Graphic</h2>
+    <div>
+      <p class="pf-lane__copy">Identity systems, packaging, and editorial layouts. Built to live across web, print, and product without falling apart.</p>
+      <ul class="pf-lane__tags">
+        <li>Logo &amp; identity</li>
+        <li>Brand guidelines &amp; voice</li>
+        <li>Packaging &amp; merch</li>
+        <li>Cover art</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--trio">
+    <!-- REPLACE: Lane 02 trio · Sujin selected graphics. 4:3. 1000x750. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-02-trio-01-sujin-selected-graphics.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Sujin Studio</span>
+        <h3 class="pf-card__name">Selected Graphics</h3>
+      </div>
+    </a>
+    <!-- REPLACE: Lane 02 trio · Cover system. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-02-trio-02-cover-system.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">DLTWKY</span>
+        <h3 class="pf-card__name">Cover System</h3>
+      </div>
+    </a>
+    <!-- REPLACE: Lane 02 trio · Editorial layout. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-02-trio-03-editorial.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Plaid Coat</span>
+        <h3 class="pf-card__name">Editorial</h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- LANE 03 · WEBSITES -->
+<section id="lane-03" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 03</div>
+    <h2 class="pf-lane__title">Websites<br>&amp; Commerce</h2>
+    <div>
+      <p class="pf-lane__copy">Marketing sites, B2B sourcing platforms, Shopify and headless builds. Fast, indexed, easy to maintain.</p>
+      <ul class="pf-lane__tags">
+        <li>Marketing &amp; product sites</li>
+        <li>Shopify &amp; e-commerce</li>
+        <li>Content management</li>
+        <li>Maintenance &amp; retainers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--featured">
+    <!-- REPLACE: Lane 03 featured · Leslie / SGF Sourcing platform. 4:5 tall. 1200x1500. -->
+    <a class="pf-card pf-card--big" href="#" style="background-image: url('assets/portfolio/lane-03-featured-sgf-sourcing-platform.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Featured · SGF Sourcing</span>
+        <h3 class="pf-card__name">B2B Sourcing Platform</h3>
+      </div>
+    </a>
+    <div class="pf-side">
+      <!-- REPLACE: Lane 03 side · Halcyon Records marketing site. 16:10. -->
+      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-03-side-01-halcyon-marketing-site.jpg');">
+        <div class="pf-card__inner">
+          <span class="pf-card__client">Halcyon Records</span>
+          <h3 class="pf-card__name">Marketing Site</h3>
+        </div>
+      </a>
+      <!-- REPLACE: Lane 03 side · Maven Co Shopify build. 16:10. -->
+      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-03-side-02-maven-shopify-build.jpg');">
+        <div class="pf-card__inner">
+          <span class="pf-card__client">Maven Co.</span>
+          <h3 class="pf-card__name">Shopify Build</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LANE 04 · SEO -->
+<section id="lane-04" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 04</div>
+    <h2 class="pf-lane__title">SEO<br>&amp; Technical</h2>
+    <div>
+      <p class="pf-lane__copy">Technical audits, content imagery, and on-page optimization. We rank pages by writing them like editors, not robots.</p>
+      <ul class="pf-lane__tags">
+        <li>Technical audits</li>
+        <li>Schema &amp; structured data</li>
+        <li>Content imagery</li>
+        <li>Performance &amp; speed audits</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--trio">
+    <!-- REPLACE: Lane 04 trio · Indexable image library. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-04-trio-01-indexable-library.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">SGF Sourcing</span>
+        <h3 class="pf-card__name">Indexable Library</h3>
+      </div>
+    </a>
+    <!-- REPLACE: Lane 04 trio · Schema rebuild. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-04-trio-02-schema-rebuild.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Maven Co.</span>
+        <h3 class="pf-card__name">Schema Rebuild</h3>
+      </div>
+    </a>
+    <!-- REPLACE: Lane 04 trio · Speed audit. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-04-trio-03-speed-audit.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Halcyon</span>
+        <h3 class="pf-card__name">Speed Audit</h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- LANE 05 · PHOTO & ADS -->
+<section id="lane-05" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 05</div>
+    <h2 class="pf-lane__title">Photography<br>&amp; Ads</h2>
+    <div>
+      <p class="pf-lane__copy">Studio and on-location shoots, paired with paid creative for Meta, TikTok, and Google.</p>
+      <ul class="pf-lane__tags">
+        <li>Studio portraits</li>
+        <li>On-location campaigns</li>
+        <li>Paid social creative</li>
+        <li>UGC kits</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--trio">
+    <!-- REPLACE: Lane 05 trio · Studio set. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-05-trio-01-studio-set.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Cold Portrait</span>
+        <h3 class="pf-card__name">Studio Set</h3>
+      </div>
+    </a>
+    <!-- REPLACE: Lane 05 trio · Editorial cover. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-05-trio-02-editorial-cover.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Wendy Cutouts</span>
+        <h3 class="pf-card__name">Editorial Cover</h3>
+      </div>
+    </a>
+    <!-- REPLACE: Lane 05 trio · Paid social. 4:3. -->
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-05-trio-03-paid-social.jpg');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Beachside</span>
+        <h3 class="pf-card__name">Paid Social</h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pf-cta">
+  <div>
+    <h2 class="pf-cta__title">Like a lane?<br>Bring us a brief.</h2>
+    <p class="pf-cta__sub">Two business day response. No retainer required.</p>
+  </div>
+  <a class="pf-cta__btn" href="contact.html">Start a project &rarr;</a>
+</section>
+
+<footer class="footer" style="margin-top:60px;">
+  <div class="footer__col">
+    404 [Come Find Me]<br>
+    Digital Design &amp; Marketing<br>
+    Est. 2024
+  </div>
+  <div class="footer__col">
+    <a href="portfolio.html">Portfolio</a><br>
+    <a href="about.html">About</a><br>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer__col footer__col--right">
+    <a href="#">Instagram</a><br>
+    <a href="#">YouTube</a><br>
+    404comefindme<br>
+    @gmail.com
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

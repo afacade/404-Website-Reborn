@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -15,8 +15,7 @@
   <a href="index.html" class="nav__logo">404<sup>*</sup></a>
   <button class="nav__toggle" aria-label="Menu">Menu</button>
   <ul class="nav__links">
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="contact.html">Contact Us</a></li>
   </ul>
@@ -24,7 +23,8 @@
 
 <!-- PAGE HERO -->
 <section class="page-hero">
-  <div class="page-hero__bg" style="background-image: url('https://picsum.photos/seed/abouthero/1600/900');"></div>
+  <!-- REPLACE: About page hero background. 1600x900 (16:9). -->
+  <div class="page-hero__bg" style="background-image: url('assets/about/about-hero.jpg');"></div>
   <h1 class="display display--xl">About<br>Us</h1>
 </section>
 
@@ -49,7 +49,8 @@
 
 <!-- FEATURE PHOTO -->
 <section class="section--tight">
-  <div class="about-feature" style="background-image: url('https://picsum.photos/seed/aboutfeature/1200/675');"></div>
+  <!-- REPLACE: About page feature image (mid-page). 1200x675 (16:9). -->
+  <div class="about-feature" style="background-image: url('assets/about/about-feature-team-group.jpg');"></div>
 </section>
 
 <!-- STORY -->
@@ -67,17 +68,20 @@
 <section class="section--tight">
   <div class="team-grid">
     <div class="team-card team-card--cyan">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-nam/600/450');"></div>
+      <!-- REPLACE: Team — Nam portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-01-nam.jpg');"></div>
       <h3 class="team-card__name">Nam</h3>
       <p class="team-card__meta">Website Developer /<br>UX Designer<br>Germany<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
     <div class="team-card team-card--yellow">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-david/600/450');"></div>
+      <!-- REPLACE: Team — David portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-02-david.jpg');"></div>
       <h3 class="team-card__name">David</h3>
       <p class="team-card__meta">Videographer /<br>Photographer<br>San Francisco, CA<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
     <div class="team-card team-card--pink">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-noah/600/450');"></div>
+      <!-- REPLACE: Team — Noah portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-03-noah.jpg');"></div>
       <h3 class="team-card__name">Noah</h3>
       <p class="team-card__meta">Lawyer /<br>Legal Advisor<br>Germany<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
@@ -90,22 +94,26 @@
   <div class="spacer-md"></div>
   <div class="team-grid team-grid--duo">
     <div class="team-card team-card--cyan">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-andrew/600/450');"></div>
+      <!-- REPLACE: Team — Andrew portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-04-andrew.jpg');"></div>
       <h3 class="team-card__name">Andrew</h3>
       <p class="team-card__meta">Illustrator /<br>UX Designer<br>Germany<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
     <div class="team-card team-card--yellow">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-cris/600/450');"></div>
+      <!-- REPLACE: Team — Cris portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-05-cris.jpg');"></div>
       <h3 class="team-card__name">Cris</h3>
       <p class="team-card__meta">Videographer /<br>Photographer<br>San Francisco, CA<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
     <div class="team-card team-card--cyan">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-sujin/600/450');"></div>
+      <!-- REPLACE: Team — Sujin portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-06-sujin.jpg');"></div>
       <h3 class="team-card__name">Sujin</h3>
       <p class="team-card__meta">Website Developer /<br>UX Designer<br>Germany<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
     <div class="team-card team-card--yellow">
-      <div class="team-card__photo" style="background-image: url('https://picsum.photos/seed/team-romy/600/450');"></div>
+      <!-- REPLACE: Team — Romy portrait. 600x450 (4:3). -->
+      <div class="team-card__photo" style="background-image: url('assets/about/team-07-romy.jpg');"></div>
       <h3 class="team-card__name">Romy</h3>
       <p class="team-card__meta">Videographer /<br>Photographer<br>San Francisco, CA<br>"This is a placeholder text for one to two sentence long bio"</p>
     </div>
@@ -120,8 +128,7 @@
     together.
   </div>
   <div class="footer__col">
-    <a href="work.html">Work</a><br>
-    <a href="services.html">Services</a><br>
+    <a href="portfolio.html">Portfolio</a><br>
     <a href="about.html">About</a><br>
     <a href="contact.html">Contact</a>
   </div>
