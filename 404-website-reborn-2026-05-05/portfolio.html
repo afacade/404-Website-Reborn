@@ -30,10 +30,12 @@
     .pf-hero__title {
       margin-top: 18px;
       font-family: var(--font-display);
-      font-size: clamp(64px, 14vw, 220px);
+      font-size: clamp(40px, 14vw, 220px);
       letter-spacing: -0.03em;
       line-height: 0.88;
       text-transform: uppercase;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .pf-hero__title span {
       background: linear-gradient(120deg, var(--cyan), var(--yellow));
@@ -254,6 +256,10 @@
       .pf-grid--big .pf-card:last-child { grid-column: auto; aspect-ratio: 2 / 3; }
     }
 
+    /* Non-clickable card variant (SEO images) */
+    .pf-card--static { cursor: default; }
+    .pf-card--static:hover { transform: none; }
+
     /* Lightbox */
     .pf-lightbox {
       position: fixed; inset: 0; z-index: 9999;
@@ -335,17 +341,8 @@
     </div>
     <div class="pf-side">
       <div class="pf-card pf-card--side pf-card--video">
-        <video controls preload="none" data-thumb-time="1">
-          <source src="assets/portfolio/jpwebsitebanner.m4v" type="video/mp4">
-        </video>
-        <div class="pf-card__inner">
-          <span class="pf-card__client">Brand Film</span>
-          <h3 class="pf-card__name">JP Website Banner</h3>
-        </div>
-      </div>
-      <div class="pf-card pf-card--side pf-card--video">
         <video controls preload="none" data-thumb-time="3">
-          <source src="assets/portfolio/rodney-tristan-concert.m4v" type="video/mp4">
+          <source src="assets/portfolio/rodney-tristan-concert.mp4" type="video/mp4">
         </video>
         <div class="pf-card__inner">
           <span class="pf-card__client">Music &middot; Performance</span>
@@ -409,19 +406,19 @@
     </div>
   </div>
   <div class="pf-grid--landscape">
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/boba-religion-website.png'); background-position: top center;">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/boba-religion-website.png" style="background-image: url('assets/portfolio/boba-religion-website.png'); background-position: top center;">
       <div class="pf-card__inner">
         <span class="pf-card__client">Web Design</span>
         <h3 class="pf-card__name">Boba Religion</h3>
       </div>
     </a>
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/sgf-sourcing-website.png'); background-position: top center;">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/sgf-sourcing-website.png" style="background-image: url('assets/portfolio/sgf-sourcing-website.png'); background-position: top center;">
       <div class="pf-card__inner">
         <span class="pf-card__client">SGF Sourcing</span>
         <h3 class="pf-card__name">B2B Sourcing Platform</h3>
       </div>
     </a>
-    <a class="pf-card" href="viethome-mockup.html" style="background-image: url('assets/portfolio/viethome-website.png'); background-position: top center;">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/viethome-website.png" style="background-image: url('assets/portfolio/viethome-website.png'); background-position: top center;">
       <div class="pf-card__inner">
         <span class="pf-card__client">VietHome</span>
         <h3 class="pf-card__name">Website Mockup</h3>
@@ -446,24 +443,24 @@
     </div>
   </div>
   <div class="pf-grid--trio">
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/seo-google-analytics.jpg');">
+    <div class="pf-card pf-card--static" style="background-image: url('assets/portfolio/seo-google-analytics.jpg');">
       <div class="pf-card__inner">
         <span class="pf-card__client">Analytics</span>
         <h3 class="pf-card__name">Google Analytics Audit</h3>
       </div>
-    </a>
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/seo-bar-chart.jpg');">
+    </div>
+    <div class="pf-card pf-card--static" style="background-image: url('assets/portfolio/seo-bar-chart.jpg');">
       <div class="pf-card__inner">
         <span class="pf-card__client">Content Strategy</span>
         <h3 class="pf-card__name">Traffic Growth</h3>
       </div>
-    </a>
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/seo-data-dashboard.jpg');">
+    </div>
+    <div class="pf-card pf-card--static" style="background-image: url('assets/portfolio/seo-data-dashboard.jpg');">
       <div class="pf-card__inner">
         <span class="pf-card__client">Technical SEO</span>
         <h3 class="pf-card__name">Performance Dashboard</h3>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
