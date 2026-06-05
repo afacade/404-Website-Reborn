@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 [Come Find Me] — Digital Design &amp; Marketing</title>
   <meta name="description" content="A small, senior team that ships brand systems, websites, and campaigns for founders who care about both craft and outcomes." />
+  <meta name="theme-color" content="#000000">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <link rel="stylesheet" href="css/style.css?v=2">
   <style>
     /* ===== Performance Agency homepage ===== */
@@ -26,17 +28,6 @@
       max-width: var(--maxw);
       margin: 0 auto;
     }
-    .v2-hero__tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 8px 16px;
-      border: 1px solid rgba(76,233,255,0.4);
-      border-radius: 999px;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 32px;
-    }
-    .v2-hero__tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
     .v2-hero__headline {
       font-family: var(--font-display);
       font-size: clamp(44px, 8.5vw, 132px);
@@ -75,7 +66,7 @@
     .v2-stats {
       max-width: var(--maxw); margin: 0 auto;
       padding: 0 var(--pad);
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
       border-top: 1px solid rgba(255,255,255,0.08);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
@@ -84,7 +75,21 @@
     .v2-stat__num { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1; }
     .v2-stat__num em { font-style: normal; color: var(--cyan); }
     .v2-stat__label { margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-500); }
-    @media (max-width: 720px) { .v2-stats { grid-template-columns: 1fr 1fr; } .v2-stat { border-bottom: 1px solid rgba(255,255,255,0.08); } }
+    @media (max-width: 720px) { .v2-stats { grid-template-columns: 1fr; } .v2-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); } }
+
+    /* Below-fold rendering optimization */
+    .v2-services, .v2-showreel, .v2-showcase, .v2-process, .v2-cta {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 600px;
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .v2-splash__video { display: none; }
+      .v2-splash { background: #111; }
+      .v2-splash__scroll { animation: none; }
+      .v2-sc-card, .v2-btn, .v2-reel__play-icon, .v2-service { transition: none; }
+    }
 
     /* Logos */
     .v2-logos { padding: 60px var(--pad); max-width: var(--maxw); margin: 0 auto; text-align: center; }
@@ -141,13 +146,148 @@
     .v2-step__body { margin-top: 12px; font-size: 14px; line-height: 1.55; color: var(--grey-300); }
     @media (max-width: 720px) { .v2-process__grid { grid-template-columns: 1fr 1fr; } }
 
+    /* ── Showreel (NFL video) ── */
+    .v2-showreel { padding: 80px var(--pad) 0; max-width: var(--maxw); margin: 0 auto; }
+    .v2-reel-card {
+      position: relative; margin-top: 48px;
+      aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden;
+      background: #111; cursor: pointer;
+    }
+    .v2-reel-card video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .v2-reel-card::after {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.05) 50%, transparent 100%);
+    }
+    .v2-reel__play {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none; cursor: pointer;
+    }
+    .v2-reel__play-icon {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .v2-reel__play:hover .v2-reel__play-icon { background: rgba(76,233,255,0.3); transform: scale(1.08); }
+    .v2-reel__play svg { width: 36px; height: 36px; fill: #fff; margin-left: 6px; }
+    .v2-reel__label {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      padding: 28px 36px;
+    }
+    .v2-reel__client {
+      font-family: "JetBrains Mono", monospace; font-size: 10px;
+      letter-spacing: 0.16em; color: var(--cyan); text-transform: uppercase; display: block; margin-bottom: 8px;
+    }
+    .v2-reel__name {
+      font-family: var(--font-display); font-size: clamp(22px, 3vw, 42px);
+      text-transform: uppercase; letter-spacing: -0.02em; line-height: 1;
+    }
+    .v2-reel-card.is-playing .v2-reel__play { display: none; }
+    .v2-reel-card.is-playing .v2-reel__label { opacity: 0; pointer-events: none; }
+    .v2-reel-card.is-playing::after { opacity: 0; }
+
+    /* ── Selected Work (3-column) ── */
+    .v2-showcase { padding: 60px var(--pad) 80px; max-width: var(--maxw); margin: 0 auto; }
+    .v2-showcase__trio {
+      margin-top: 48px; display: grid;
+      grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .v2-sc-card {
+      position: relative; border-radius: 14px; overflow: hidden;
+      background: var(--grey-900); background-size: cover; background-position: center;
+      aspect-ratio: 3 / 4; transition: transform 0.4s; cursor: pointer;
+    }
+    .v2-sc-card:hover { transform: translateY(-4px); }
+    .v2-sc-card::after {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.08) 55%, transparent 100%);
+    }
+    .v2-sc-card__inner {
+      position: absolute; inset: 0; z-index: 2;
+      padding: 22px 24px; display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .v2-sc-card__client {
+      font-family: "JetBrains Mono", monospace; font-size: 10px;
+      letter-spacing: 0.16em; color: var(--cyan); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .v2-sc-card__name {
+      font-family: var(--font-display); font-size: clamp(18px, 2vw, 26px);
+      text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; color: #fff;
+    }
+    @media (max-width: 720px) { .v2-showcase__trio { grid-template-columns: 1fr; } }
+
+    /* ── Video splash hero ── */
+    .v2-splash {
+      position: relative; height: 100vh; height: 100svh; min-height: 560px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .v2-splash__video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .v2-splash__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%);
+    }
+    .v2-splash__content {
+      position: relative; z-index: 2; text-align: center; padding: 0 var(--pad);
+    }
+    .v2-splash__num {
+      font-family: var(--font-display);
+      font-size: clamp(96px, 22vw, 320px);
+      letter-spacing: -0.04em; line-height: 0.88; color: #fff;
+    }
+    .v2-splash__name {
+      font-family: var(--font-display);
+      font-size: clamp(14px, 3vw, 46px);
+      letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
+      margin-top: 8px;
+    }
+    .v2-splash__name .w-cyan  { color: var(--cyan); }
+    .v2-splash__name .w-yellow { color: var(--yellow); }
+    .v2-splash__name .w-pink  { color: var(--pink); }
+    .v2-splash__est {
+      margin-top: 40px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .v2-splash__scroll {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+      text-decoration: none; transition: color 0.2s;
+      animation: nudge 2.4s ease-in-out infinite;
+    }
+    .v2-splash__scroll:hover { color: var(--pink); }
+    .v2-splash__scroll svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+    @keyframes nudge { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* Magenta accents */
+    .v2-hero__headline span {
+      background: linear-gradient(120deg, var(--cyan), var(--pink), var(--yellow)) !important;
+      -webkit-background-clip: text !important; background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+    .v2-service:nth-child(2) .v2-service__num { color: var(--yellow); }
+    .v2-service:nth-child(3) .v2-service__num { color: var(--pink); }
+    .v2-step:nth-child(2) { border-top-color: var(--yellow); }
+    .v2-step:nth-child(2) .v2-step__num { color: var(--yellow); }
+    .v2-step:nth-child(3) { border-top-color: var(--pink); }
+    .v2-step:nth-child(3) .v2-step__num { color: var(--pink); }
+
     /* CTA card */
     .v2-cta {
       margin: 80px var(--pad) 0;
       padding: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 80px);
       max-width: var(--maxw);
       margin-left: auto; margin-right: auto;
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--yellow) 100%);
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 50%, var(--yellow) 100%);
       color: #000;
       border-radius: 24px;
       display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
@@ -171,9 +311,25 @@
   </ul>
 </nav>
 
-<section class="v2-hero">
-  <span class="v2-hero__tag">Booking Q3 2026 &middot; 2 slots open</span>
-  <h1 class="v2-hero__headline">Design &amp; marketing <span>engineered</span> to perform.</h1>
+<!-- VIDEO SPLASH HERO -->
+<section class="v2-splash">
+  <video class="v2-splash__video" autoplay muted loop playsinline>
+    <source src="assets/home/jpwebsitebanner.m4v" type="video/mp4">
+  </video>
+  <div class="v2-splash__overlay"></div>
+  <div class="v2-splash__content">
+    <div class="v2-splash__num">404</div>
+    <div class="v2-splash__name">[<span class="w-cyan">COME</span> <span class="w-yellow">FIND</span> <span class="w-pink">ME</span>]</div>
+    <div class="v2-splash__est">Est. 2024 &middot; Born in USA</div>
+  </div>
+  <a class="v2-splash__scroll" href="#main">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    scroll
+  </a>
+</section>
+
+<section id="main" class="v2-hero">
+<h1 class="v2-hero__headline">Design &amp; marketing <span>engineered</span> to perform.</h1>
   <div class="v2-hero__lower">
     <p class="v2-hero__sub">404 is a small, senior team that ships brand systems, websites, and campaigns for founders who care about both craft and outcomes. Every engagement begins with the metric we&rsquo;re moving.</p>
     <div class="v2-hero__cta">
@@ -184,23 +340,11 @@
 </section>
 
 <section class="v2-stats">
-  <div class="v2-stat"><div class="v2-stat__num"><em>28</em>+</div><div class="v2-stat__label">Brands shipped</div></div>
+  <div class="v2-stat"><div class="v2-stat__num"><em>10</em>+</div><div class="v2-stat__label">Brands shipped</div></div>
   <div class="v2-stat"><div class="v2-stat__num"><em>4.9</em>/5</div><div class="v2-stat__label">Avg. client rating</div></div>
-  <div class="v2-stat"><div class="v2-stat__num"><em>$3.2</em>M</div><div class="v2-stat__label">Client revenue influenced</div></div>
   <div class="v2-stat"><div class="v2-stat__num"><em>92</em>%</div><div class="v2-stat__label">Repeat &amp; referral</div></div>
 </section>
 
-<section class="v2-logos">
-  <div class="v2-logos__label">// Trusted partners</div>
-  <div class="v2-logos__row">
-    <span>HALCYON</span>
-    <span>NORTHBOUND</span>
-    <span>FIELD&amp;FORGE</span>
-    <span>MAVEN&middot;CO</span>
-    <span>STUDIO ITO</span>
-    <span>RIDGELINE</span>
-  </div>
-</section>
 
 <section class="v2-services">
   <div class="v2-section-eyebrow">// 01 Capabilities</div>
@@ -239,25 +383,55 @@
   </div>
 </section>
 
-<section class="v2-feature">
-  <div class="v2-feature__card">
-    <!-- REPLACE: home featured case image. Recommended 1400x1000 (4:3). -->
-    <div class="v2-feature__img" style="background-image: url('assets/home/home-featured-case-halcyon-records.jpg');"></div>
-    <div class="v2-feature__body">
-      <div class="v2-feature__client">Featured Case &middot; Halcyon Records</div>
-      <h3 class="v2-feature__title">From bedroom artist to charting label.</h3>
-      <p class="v2-feature__copy">We rebuilt Halcyon&rsquo;s identity, shipped a release-ready cover system, and produced the launch campaign that took their flagship artist into rotation on three major streaming editorials.</p>
-      <div class="v2-feature__metrics">
-        <div class="v2-feature__metric"><strong>2.4M</strong><span>Streams in 30 days</span></div>
-        <div class="v2-feature__metric"><strong>+218%</strong><span>Follower growth</span></div>
-        <div class="v2-feature__metric"><strong>14</strong><span>Press features</span></div>
+<!-- SHOWREEL -->
+<section class="v2-showreel">
+  <div class="v2-section-eyebrow">// 02 Showreel</div>
+  <h2 class="v2-section-title">Partner highlight.</h2>
+  <div class="v2-reel-card" id="nfl-card">
+    <video data-thumb-time="2" preload="none" id="nfl-video">
+      <source src="assets/home/nfl-highlight.mov" type="video/quicktime">
+      <source src="assets/home/nfl-highlight.mov" type="video/mp4">
+    </video>
+    <button class="v2-reel__play" id="nfl-play" aria-label="Play NFL Highlight Reel">
+      <div class="v2-reel__play-icon">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </button>
+    <div class="v2-reel__label">
+      <span class="v2-reel__client">Sports &middot; Film</span>
+      <h3 class="v2-reel__name">NFL Highlight Reel</h3>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section class="v2-showcase">
+  <div class="v2-section-eyebrow">// 03 Selected Work</div>
+  <h2 class="v2-section-title">Recent projects.</h2>
+  <div class="v2-showcase__trio">
+    <div class="v2-sc-card" data-bg="assets/home/rodney-tristan-portrait.jpg">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">Portrait &middot; Photography</span>
+        <h3 class="v2-sc-card__name">Rodney Tristan</h3>
+      </div>
+    </div>
+    <div class="v2-sc-card" data-bg="assets/home/loko-poster.png">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">Graphic Design</span>
+        <h3 class="v2-sc-card__name">Loko Poster</h3>
+      </div>
+    </div>
+    <div class="v2-sc-card" data-bg="assets/home/wndy.png">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">Photography</span>
+        <h3 class="v2-sc-card__name">WNDY</h3>
       </div>
     </div>
   </div>
 </section>
 
 <section class="v2-process">
-  <div class="v2-section-eyebrow">// 02 Process</div>
+  <div class="v2-section-eyebrow">// 04 Process</div>
   <h2 class="v2-section-title">A four-step engagement, scoped to your timeline.</h2>
   <div class="v2-process__grid">
     <div class="v2-step">
@@ -273,7 +447,7 @@
     <div class="v2-step">
       <div class="v2-step__num">03 / DESIGN</div>
       <h4 class="v2-step__title">Build &amp; ship</h4>
-      <p class="v2-step__body">Weekly demos, shared Figma, and code that doesn&rsquo;t fall apart in production.</p>
+      <p class="v2-step__body">Revisions until you&rsquo;re satisfied, and code that doesn&rsquo;t fall apart in production.</p>
     </div>
     <div class="v2-step">
       <div class="v2-step__num">04 / GROW</div>
@@ -311,5 +485,19 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  (function() {
+    var card  = document.getElementById('nfl-card');
+    var video = document.getElementById('nfl-video');
+    var btn   = document.getElementById('nfl-play');
+    if (btn && video && card) {
+      btn.addEventListener('click', function() {
+        card.classList.add('is-playing');
+        video.setAttribute('controls', '');
+        video.play();
+      });
+    }
+  })();
+</script>
 </body>
 </html>

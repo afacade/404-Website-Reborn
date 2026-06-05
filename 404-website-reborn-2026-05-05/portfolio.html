@@ -222,6 +222,61 @@
       .pf-cta { grid-template-columns: 1fr; }
       .pf-cta__btn { justify-self: start; }
     }
+
+    /* Video cards */
+    .pf-card--video { background: #111; }
+    .pf-card--video video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      z-index: 3;
+    }
+    .pf-card--video .pf-card__inner { z-index: 4; pointer-events: none; }
+    .pf-card--video::after { z-index: 2; }
+
+    /* Landscape website layout — full-width stacked cards */
+    .pf-grid--landscape {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .pf-grid--landscape .pf-card {
+      width: 100%; aspect-ratio: 16 / 6;
+    }
+
+    /* Bigger 2-up grid for graphic design & photo/ads */
+    .pf-grid--big {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .pf-grid--big .pf-card { aspect-ratio: 2 / 3; }
+    .pf-grid--big .pf-card:last-child {
+      grid-column: 1 / -1; aspect-ratio: 16 / 7;
+    }
+    @media (max-width: 720px) {
+      .pf-grid--big { grid-template-columns: 1fr; }
+      .pf-grid--big .pf-card:last-child { grid-column: auto; aspect-ratio: 2 / 3; }
+    }
+
+    /* Lightbox */
+    .pf-lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.94);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .pf-lightbox.is-open { opacity: 1; pointer-events: all; }
+    .pf-lightbox__img {
+      max-width: 92vw; max-height: 90vh;
+      object-fit: contain; border-radius: 6px;
+      box-shadow: 0 0 80px rgba(0,0,0,0.6);
+    }
+    .pf-lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 24px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .pf-lightbox__close:hover { background: rgba(255,255,255,0.2); }
   </style>
 </head>
 <body class="pf">
@@ -268,28 +323,35 @@
     </div>
   </div>
   <div class="pf-grid--featured">
-    <!-- REPLACE: Lane 01 featured · Nick Emmanwori — NFL Combine & Draft reel. 4:5 tall. 1200x1500. -->
-    <a class="pf-card pf-card--big" href="#" style="background-image: url('assets/portfolio/lane-01-featured-nick-emmanwori-nfl-reel.jpg');">
+    <div class="pf-card pf-card--big pf-card--video">
+      <video controls preload="none" data-thumb-time="2">
+        <source src="assets/portfolio/nfl-highlight.mov" type="video/quicktime">
+        <source src="assets/portfolio/nfl-highlight.mov" type="video/mp4">
+      </video>
       <div class="pf-card__inner">
-        <span class="pf-card__client">Featured · Nick Emmanwori</span>
-        <h3 class="pf-card__name">NFL Combine &amp; Draft Reel</h3>
+        <span class="pf-card__client">Featured &middot; Sports Film</span>
+        <h3 class="pf-card__name">NFL Highlight Reel</h3>
       </div>
-    </a>
+    </div>
     <div class="pf-side">
-      <!-- REPLACE: Lane 01 side · Get Ready music video. 16:10. 900x560. -->
-      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-01-side-01-ready-music-video.jpg');">
+      <div class="pf-card pf-card--side pf-card--video">
+        <video controls preload="none" data-thumb-time="1">
+          <source src="assets/portfolio/jpwebsitebanner.m4v" type="video/mp4">
+        </video>
         <div class="pf-card__inner">
-          <span class="pf-card__client">Get Ready</span>
-          <h3 class="pf-card__name">Ready? Music Video</h3>
+          <span class="pf-card__client">Brand Film</span>
+          <h3 class="pf-card__name">JP Website Banner</h3>
         </div>
-      </a>
-      <!-- REPLACE: Lane 01 side · Performance cutdown. 16:10. 900x560. -->
-      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-01-side-02-performance-cut.jpg');">
+      </div>
+      <div class="pf-card pf-card--side pf-card--video">
+        <video controls preload="none" data-thumb-time="3">
+          <source src="assets/portfolio/rodney-tristan-concert.m4v" type="video/mp4">
+        </video>
         <div class="pf-card__inner">
-          <span class="pf-card__client">Cutdown</span>
-          <h3 class="pf-card__name">Performance Cut</h3>
+          <span class="pf-card__client">Music &middot; Performance</span>
+          <h3 class="pf-card__name">Rodney Tristan Concert</h3>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
@@ -309,26 +371,23 @@
       </ul>
     </div>
   </div>
-  <div class="pf-grid--trio">
-    <!-- REPLACE: Lane 02 trio · Sujin selected graphics. 4:3. 1000x750. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-02-trio-01-sujin-selected-graphics.jpg');">
+  <div class="pf-grid--big">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/loko-poster.png" style="background-image: url('assets/portfolio/loko-poster.png');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Sujin Studio</span>
-        <h3 class="pf-card__name">Selected Graphics</h3>
+        <span class="pf-card__client">Graphic Design</span>
+        <h3 class="pf-card__name">Loko Poster</h3>
       </div>
     </a>
-    <!-- REPLACE: Lane 02 trio · Cover system. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-02-trio-02-cover-system.jpg');">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/rodney-tristan-pyos-poster.png" style="background-image: url('assets/portfolio/rodney-tristan-pyos-poster.png');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">DLTWKY</span>
-        <h3 class="pf-card__name">Cover System</h3>
+        <span class="pf-card__client">Rodney Tristan</span>
+        <h3 class="pf-card__name">PYOS Poster</h3>
       </div>
     </a>
-    <!-- REPLACE: Lane 02 trio · Editorial layout. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-02-trio-03-editorial.jpg');">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/wndy.png" style="background-image: url('assets/portfolio/wndy.png');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Plaid Coat</span>
-        <h3 class="pf-card__name">Editorial</h3>
+        <span class="pf-card__client">Photography</span>
+        <h3 class="pf-card__name">WNDY</h3>
       </div>
     </a>
   </div>
@@ -349,30 +408,25 @@
       </ul>
     </div>
   </div>
-  <div class="pf-grid--featured">
-    <!-- REPLACE: Lane 03 featured · Leslie / SGF Sourcing platform. 4:5 tall. 1200x1500. -->
-    <a class="pf-card pf-card--big" href="#" style="background-image: url('assets/portfolio/lane-03-featured-sgf-sourcing-platform.jpg');">
+  <div class="pf-grid--landscape">
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/boba-religion-website.png'); background-position: top center;">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Featured · SGF Sourcing</span>
+        <span class="pf-card__client">Web Design</span>
+        <h3 class="pf-card__name">Boba Religion</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/sgf-sourcing-website.png'); background-position: top center;">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">SGF Sourcing</span>
         <h3 class="pf-card__name">B2B Sourcing Platform</h3>
       </div>
     </a>
-    <div class="pf-side">
-      <!-- REPLACE: Lane 03 side · Halcyon Records marketing site. 16:10. -->
-      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-03-side-01-halcyon-marketing-site.jpg');">
-        <div class="pf-card__inner">
-          <span class="pf-card__client">Halcyon Records</span>
-          <h3 class="pf-card__name">Marketing Site</h3>
-        </div>
-      </a>
-      <!-- REPLACE: Lane 03 side · Maven Co Shopify build. 16:10. -->
-      <a class="pf-card pf-card--side" href="#" style="background-image: url('assets/portfolio/lane-03-side-02-maven-shopify-build.jpg');">
-        <div class="pf-card__inner">
-          <span class="pf-card__client">Maven Co.</span>
-          <h3 class="pf-card__name">Shopify Build</h3>
-        </div>
-      </a>
-    </div>
+    <a class="pf-card" href="viethome-mockup.html" style="background-image: url('assets/portfolio/viethome-website.png'); background-position: top center;">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">VietHome</span>
+        <h3 class="pf-card__name">Website Mockup</h3>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -392,25 +446,22 @@
     </div>
   </div>
   <div class="pf-grid--trio">
-    <!-- REPLACE: Lane 04 trio · Indexable image library. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-04-trio-01-indexable-library.jpg');">
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/seo-google-analytics.jpg');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">SGF Sourcing</span>
-        <h3 class="pf-card__name">Indexable Library</h3>
+        <span class="pf-card__client">Analytics</span>
+        <h3 class="pf-card__name">Google Analytics Audit</h3>
       </div>
     </a>
-    <!-- REPLACE: Lane 04 trio · Schema rebuild. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-04-trio-02-schema-rebuild.jpg');">
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/seo-bar-chart.jpg');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Maven Co.</span>
-        <h3 class="pf-card__name">Schema Rebuild</h3>
+        <span class="pf-card__client">Content Strategy</span>
+        <h3 class="pf-card__name">Traffic Growth</h3>
       </div>
     </a>
-    <!-- REPLACE: Lane 04 trio · Speed audit. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-04-trio-03-speed-audit.jpg');">
+    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/seo-data-dashboard.jpg');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Halcyon</span>
-        <h3 class="pf-card__name">Speed Audit</h3>
+        <span class="pf-card__client">Technical SEO</span>
+        <h3 class="pf-card__name">Performance Dashboard</h3>
       </div>
     </a>
   </div>
@@ -431,26 +482,23 @@
       </ul>
     </div>
   </div>
-  <div class="pf-grid--trio">
-    <!-- REPLACE: Lane 05 trio · Studio set. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-05-trio-01-studio-set.jpg');">
+  <div class="pf-grid--big">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/jeremy-zucker.png" style="background-image: url('assets/portfolio/jeremy-zucker.png');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Cold Portrait</span>
-        <h3 class="pf-card__name">Studio Set</h3>
+        <span class="pf-card__client">Artist Portrait</span>
+        <h3 class="pf-card__name">Jeremy Zucker</h3>
       </div>
     </a>
-    <!-- REPLACE: Lane 05 trio · Editorial cover. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-05-trio-02-editorial-cover.jpg');">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/ryan-santamaria.png" style="background-image: url('assets/portfolio/ryan-santamaria.png');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Wendy Cutouts</span>
-        <h3 class="pf-card__name">Editorial Cover</h3>
+        <span class="pf-card__client">Artist Photography</span>
+        <h3 class="pf-card__name">Ryan Santamaria</h3>
       </div>
     </a>
-    <!-- REPLACE: Lane 05 trio · Paid social. 4:3. -->
-    <a class="pf-card" href="#" style="background-image: url('assets/portfolio/lane-05-trio-03-paid-social.jpg');">
+    <a class="pf-card" href="#" data-lightbox="assets/portfolio/u-and-i-music-cover.png" style="background-image: url('assets/portfolio/u-and-i-music-cover.png');">
       <div class="pf-card__inner">
-        <span class="pf-card__client">Beachside</span>
-        <h3 class="pf-card__name">Paid Social</h3>
+        <span class="pf-card__client">Music Cover</span>
+        <h3 class="pf-card__name">U &amp; I</h3>
       </div>
     </a>
   </div>
@@ -483,6 +531,12 @@
     @gmail.com
   </div>
 </footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="pf-lightbox" role="dialog" aria-modal="true">
+  <button class="pf-lightbox__close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" class="pf-lightbox__img" src="" alt="">
+</div>
 
 <script src="js/main.js"></script>
 </body>

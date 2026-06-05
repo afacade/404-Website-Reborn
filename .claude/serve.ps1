@@ -23,7 +23,12 @@ $mime = @{
   ".ico"  = "image/x-icon"
   ".txt"  = "text/plain; charset=utf-8"
   ".woff" = "font/woff"
-  ".woff2" = "font/woff2"
+  ".woff2"= "font/woff2"
+  ".mp4"  = "video/mp4"
+  ".m4v"  = "video/mp4"
+  ".mov"  = "video/quicktime"
+  ".webm" = "video/webm"
+  ".ogg"  = "video/ogg"
 }
 
 try {
@@ -38,14 +43,51 @@ try {
       if ((Test-Path $local -PathType Container)) { $local = Join-Path $local "index.html" }
 
       if (Test-Path $local -PathType Leaf) {
-        $ext = [System.IO.Path]::GetExtension($local).ToLower()
-        $ct = $mime[$ext]
-        if (-not $ct) { $ct = "application/octet-stream" }
-        $bytes = [System.IO.File]::ReadAllBytes($local)
+        $ext  = [System.IO.Path]::GetExtension($local).ToLower()
+        $ct   = if ($mime[$ext]) { $mime[$ext] } else { "application/octet-stream" }
+        $size = (Get-Item $local).Length
+
         $res.ContentType = $ct
-        $res.ContentLength64 = $bytes.Length
-        $res.StatusCode = 200
-        $res.OutputStream.Write($bytes, 0, $bytes.Length)
+        $res.AddHeader("Accept-Ranges", "bytes")
+
+        $rangeHeader = $req.Headers["Range"]
+        if ($rangeHeader -and $rangeHeader -match "bytes=(\d*)-(\d*)") {
+          $start = if ($Matches[1]) { [long]$Matches[1] } else { 0 }
+          $end   = if ($Matches[2]) { [long]$Matches[2] } else { $size - 1 }
+          if ($end -ge $size) { $end = $size - 1 }
+          $len   = $end - $start + 1
+
+          $res.StatusCode = 206
+          $res.AddHeader("Content-Range", "bytes $start-$end/$size")
+          $res.ContentLength64 = $len
+
+          $fs = [System.IO.File]::OpenRead($local)
+          try {
+            $fs.Seek($start, [System.IO.SeekOrigin]::Begin) | Out-Null
+            $buf = New-Object byte[] 65536
+            $rem = $len
+            while ($rem -gt 0) {
+              $toRead = [Math]::Min($rem, $buf.Length)
+              $n = $fs.Read($buf, 0, $toRead)
+              if ($n -le 0) { break }
+              $res.OutputStream.Write($buf, 0, $n)
+              $rem -= $n
+            }
+          } finally { $fs.Close() }
+        } else {
+          $res.StatusCode = 200
+          $res.ContentLength64 = $size
+
+          $fs = [System.IO.File]::OpenRead($local)
+          try {
+            $buf = New-Object byte[] 65536
+            while ($true) {
+              $n = $fs.Read($buf, 0, $buf.Length)
+              if ($n -le 0) { break }
+              $res.OutputStream.Write($buf, 0, $n)
+            }
+          } finally { $fs.Close() }
+        }
       } else {
         $res.StatusCode = 404
         $msg = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found: $path")
