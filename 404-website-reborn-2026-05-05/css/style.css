@@ -637,6 +637,62 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================================================
+   FINAL CTA BANNER (shared across pages)
+   ========================================================================== */
+.sell-cta {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 0 var(--pad);
+}
+.sell-cta__inner {
+  position: relative;
+  border-radius: 24px;
+  padding: clamp(48px, 8vw, 96px) clamp(28px, 5vw, 64px);
+  background:
+    radial-gradient(circle at 20% 30%, rgba(76, 233, 255, 0.18), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 60, 188, 0.18), transparent 50%),
+    #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  text-align: center;
+}
+.sell-cta__eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 20px;
+}
+.sell-cta__title {
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(40px, 7vw, 88px);
+  line-height: 0.95; letter-spacing: -0.02em;
+  margin-bottom: 40px;
+  color: #fff;
+}
+.sell-cta__title em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--cyan), var(--pink), var(--yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sell-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.sell-cta__btn {
+  display: inline-block;
+  padding: 16px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform .2s, background .2s, color .2s;
+}
+.sell-cta__btn--primary { background: #fff; color: #000; }
+.sell-cta__btn--primary:hover { background: var(--cyan); transform: translateY(-2px); }
+.sell-cta__btn--ghost { color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+.sell-cta__btn--ghost:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+
+/* ==========================================================================
    HELPERS
    ========================================================================== */
 .center { text-align: center; }
