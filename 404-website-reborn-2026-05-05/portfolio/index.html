@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — 404 [Come Find Me]</title>
   <meta name="description" content="Selected work across video, brand, web, SEO, and ads. Read straight through, or jump to a lane." />
+  <!-- Preload brand fonts so headings don't flash -->
+  <link rel="preload" href="../fonts/DrukWideBold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="../fonts/Acumin-SemiboldPro.otf" as="font" type="font/otf" crossorigin>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=5">
   <style>
     /* ===== Portfolio · Lane-by-Lane ===== */
     body.pf { background: #000; color: #fff; }
@@ -30,12 +34,11 @@
     .pf-hero__title {
       margin-top: 18px;
       font-family: var(--font-display);
-      font-size: clamp(28px, 9.8vw, 154px);
+      font-size: clamp(21px, 6.75vw, 107px); /* 25% smaller than original 9vw / 142px */
       letter-spacing: -0.03em;
       line-height: 0.88;
       text-transform: uppercase;
-      overflow-wrap: break-word;
-      word-break: break-word;
+      white-space: nowrap;
     }
     .pf-hero__title span {
       background: linear-gradient(120deg, var(--cyan), var(--yellow));
@@ -96,19 +99,14 @@
       line-height: 1; letter-spacing: -0.02em;
       text-transform: uppercase;
     }
-    .pf-lane__copy {
-      font-size: 15px; line-height: 1.6;
-      color: var(--grey-300);
-      max-width: 50ch;
-      margin-bottom: 18px;
-    }
     .pf-lane__tags { list-style: none; }
     .pf-lane__tags li {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 11px; letter-spacing: 0.12em;
-      color: var(--grey-300);
+      font-family: "Acumin Pro Semibold", var(--font-body);
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: #fff;
       text-transform: uppercase;
-      line-height: 2;
+      line-height: 1.9;
     }
     .pf-lane__tags li::before { content: "→ "; color: var(--cyan); }
     @media (max-width: 900px) {
@@ -260,6 +258,47 @@
     .pf-card--static { cursor: default; }
     .pf-card--static:hover { transform: none; }
 
+    /* Videography reels — scales past 2 assets (3-up that wraps) */
+    .pf-grid--reels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .pf-grid--reels .pf-card { aspect-ratio: 16 / 10; }
+    @media (max-width: 960px) { .pf-grid--reels { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .pf-grid--reels { grid-template-columns: 1fr; } }
+
+    /* Placeholder card (incoming content) */
+    .pf-card--placeholder {
+      cursor: default;
+      background:
+        repeating-linear-gradient(45deg,
+          rgba(255,255,255,0.04) 0 12px,
+          rgba(255,255,255,0.02) 12px 24px);
+      border: 1px dashed rgba(255,255,255,0.2);
+    }
+    .pf-card--placeholder::after { display: none; }
+    .pf-card--placeholder:hover { transform: none; }
+    .pf-placeholder__inner { z-index: 1; }
+    .pf-placeholder__inner .pf-card__client { color: var(--yellow); }
+
+    /* Placeholder slot — full-width strip below grid */
+    .pf-placeholder {
+      margin-top: 18px;
+      padding: 22px 24px;
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 12px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey-500);
+    }
+    .pf-placeholder::before {
+      content: attr(data-placeholder) " →";
+      color: var(--cyan);
+    }
+
     /* Lightbox */
     .pf-lightbox {
       position: fixed; inset: 0; z-index: 9999;
@@ -299,183 +338,75 @@
 
 <!-- HERO -->
 <section class="pf-hero">
-  <div class="pf-eyebrow">// Five lanes · One bench</div>
+  <div class="pf-eyebrow">// Four lanes &middot; One bench</div>
   <h1 class="pf-hero__title">Port<span>folio.</span></h1>
-  <p class="pf-hero__sub">Read straight through, or jump to a lane. Each section pairs the capability with three to four pieces of recent work — what we do next to what it actually looks like.</p>
+  <p class="pf-hero__sub">Read straight through, or jump to a lane. The work, side by side with the stories behind it &mdash; from a first shutter to a fully-built home on the web.</p>
 </section>
 
 <!-- LANE NAVIGATOR -->
 <nav class="pf-nav">
   <a href="#lane-01"><span>01</span> Videography</a>
-  <a href="#lane-02"><span>02</span> Brand &amp; Graphic</a>
-  <a href="#lane-03"><span>03</span> Websites</a>
-  <a href="#lane-04"><span>04</span> SEO</a>
-  <a href="#lane-05"><span>05</span> Photo &amp; Ads</a>
+  <a href="#lane-02"><span>02</span> Photography</a>
+  <a href="#lane-03"><span>03</span> Graphic Design</a>
+  <a href="#lane-04"><span>04</span> Website</a>
 </nav>
 
 <!-- LANE 01 · VIDEOGRAPHY -->
 <section id="lane-01" class="pf-lane">
   <div class="pf-lane__head">
     <div class="pf-lane__num">L / 01</div>
-    <h2 class="pf-lane__title">Videography<br>&amp; Edit</h2>
+    <h2 class="pf-lane__title">Videography</h2>
     <div>
-      <p class="pf-lane__copy">Long-form, social cutdowns, sports edits, and motion. Camera-ready scripts to delivery in 7&ndash;14 days. 4K, color-graded, music-licensed.</p>
       <ul class="pf-lane__tags">
-        <li>NFL highlight reels</li>
-        <li>Brand films &amp; trailer reels</li>
-        <li>Music videos &amp; performance edits</li>
+        <li>Highlight reels</li>
+        <li>Brand &amp; performance films</li>
+        <li>Music &amp; concert edits</li>
         <li>Social cutdowns (9:16 / 1:1)</li>
       </ul>
     </div>
   </div>
-  <div class="pf-grid--featured">
-    <div class="pf-card pf-card--big pf-card--video">
-      <video controls preload="none" data-thumb-time="2">
+  <!-- Videography grid — scales past 2 assets; add more <a.pf-card.pf-card--video> entries below as they land -->
+  <div class="pf-grid--reels">
+    <a class="pf-card pf-card--video">
+      <video controls preload="none" data-thumb-time="2" poster="../assets/posters/nfl-highlight-poster.jpg">
         <source src="../assets/portfolio/nfl-highlight.mov" type="video/quicktime">
         <source src="../assets/portfolio/nfl-highlight.mov" type="video/mp4">
       </video>
       <div class="pf-card__inner">
-        <span class="pf-card__client">Featured &middot; Sports Film</span>
+        <span class="pf-card__client">Sports &middot; Film</span>
         <h3 class="pf-card__name">NFL Highlight Reel</h3>
       </div>
-    </div>
-    <div class="pf-side">
-      <div class="pf-card pf-card--side pf-card--video">
-        <video controls preload="none" data-thumb-time="3">
-          <source src="../assets/portfolio/rodney-tristan-concert.mp4" type="video/mp4">
-        </video>
-        <div class="pf-card__inner">
-          <span class="pf-card__client">Music &middot; Performance</span>
-          <h3 class="pf-card__name">Rodney Tristan Concert</h3>
-        </div>
+    </a>
+    <a class="pf-card pf-card--video">
+      <video controls preload="none" data-thumb-time="3" poster="../assets/posters/rodney-tristan-concert-poster.jpg">
+        <source src="../assets/portfolio/rodney-tristan-concert.mp4" type="video/mp4">
+      </video>
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Music &middot; Performance</span>
+        <h3 class="pf-card__name">Rodney Tristan Concert</h3>
+      </div>
+    </a>
+    <!-- PLACEHOLDER: third reel slot — drop next highlight reel here -->
+    <div class="pf-card pf-card--placeholder">
+      <div class="pf-card__inner pf-placeholder__inner">
+        <span class="pf-card__client">Coming Soon</span>
+        <h3 class="pf-card__name">New Highlight Reel</h3>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LANE 02 · BRAND & GRAPHIC -->
+<!-- LANE 02 · PHOTOGRAPHY -->
 <section id="lane-02" class="pf-lane">
   <div class="pf-lane__head">
     <div class="pf-lane__num">L / 02</div>
-    <h2 class="pf-lane__title">Brand<br>&amp; Graphic</h2>
+    <h2 class="pf-lane__title">Photography</h2>
     <div>
-      <p class="pf-lane__copy">Identity systems, packaging, and editorial layouts. Built to live across web, print, and product without falling apart.</p>
       <ul class="pf-lane__tags">
-        <li>Logo &amp; identity</li>
-        <li>Brand guidelines &amp; voice</li>
-        <li>Packaging &amp; merch</li>
-        <li>Cover art</li>
-      </ul>
-    </div>
-  </div>
-  <div class="pf-grid--big">
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/loko-poster.png" style="background-image: url('../assets/portfolio/loko-poster.png');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Graphic Design</span>
-        <h3 class="pf-card__name">Loko Poster</h3>
-      </div>
-    </a>
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/rodney-tristan-pyos-poster.png" style="background-image: url('../assets/portfolio/rodney-tristan-pyos-poster.png');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Rodney Tristan</span>
-        <h3 class="pf-card__name">PYOS Poster</h3>
-      </div>
-    </a>
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/wndy.png" style="background-image: url('../assets/portfolio/wndy.png');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Photography</span>
-        <h3 class="pf-card__name">WNDY</h3>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- LANE 03 · WEBSITES -->
-<section id="lane-03" class="pf-lane">
-  <div class="pf-lane__head">
-    <div class="pf-lane__num">L / 03</div>
-    <h2 class="pf-lane__title">Websites<br>&amp; Commerce</h2>
-    <div>
-      <p class="pf-lane__copy">Marketing sites, B2B sourcing platforms, Shopify and headless builds. Fast, indexed, easy to maintain.</p>
-      <ul class="pf-lane__tags">
-        <li>Marketing &amp; product sites</li>
-        <li>Shopify &amp; e-commerce</li>
-        <li>Content management</li>
-        <li>Maintenance &amp; retainers</li>
-      </ul>
-    </div>
-  </div>
-  <div class="pf-grid--landscape">
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/boba-religion-website.png" style="background-image: url('../assets/portfolio/boba-religion-website.png'); background-position: top center;">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Web Design</span>
-        <h3 class="pf-card__name">Boba Religion</h3>
-      </div>
-    </a>
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/sgf-sourcing-website.png" style="background-image: url('../assets/portfolio/sgf-sourcing-website.png'); background-position: top center;">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">SGF Sourcing</span>
-        <h3 class="pf-card__name">B2B Sourcing Platform</h3>
-      </div>
-    </a>
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/viethome-website.png" style="background-image: url('../assets/portfolio/viethome-website.png'); background-position: top center;">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">VietHome</span>
-        <h3 class="pf-card__name">Website Mockup</h3>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- LANE 04 · SEO -->
-<section id="lane-04" class="pf-lane">
-  <div class="pf-lane__head">
-    <div class="pf-lane__num">L / 04</div>
-    <h2 class="pf-lane__title">SEO<br>&amp; Technical</h2>
-    <div>
-      <p class="pf-lane__copy">Technical audits, content imagery, and on-page optimization. We rank pages by writing them like editors, not robots.</p>
-      <ul class="pf-lane__tags">
-        <li>Technical audits</li>
-        <li>Schema &amp; structured data</li>
-        <li>Content imagery</li>
-        <li>Performance &amp; speed audits</li>
-      </ul>
-    </div>
-  </div>
-  <div class="pf-grid--trio">
-    <div class="pf-card pf-card--static" style="background-image: url('../assets/portfolio/seo-google-analytics.jpg');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Analytics</span>
-        <h3 class="pf-card__name">Google Analytics Audit</h3>
-      </div>
-    </div>
-    <div class="pf-card pf-card--static" style="background-image: url('../assets/portfolio/seo-bar-chart.jpg');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Content Strategy</span>
-        <h3 class="pf-card__name">Traffic Growth</h3>
-      </div>
-    </div>
-    <div class="pf-card pf-card--static" style="background-image: url('../assets/portfolio/seo-data-dashboard.jpg');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Technical SEO</span>
-        <h3 class="pf-card__name">Performance Dashboard</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LANE 05 · PHOTO & ADS -->
-<section id="lane-05" class="pf-lane">
-  <div class="pf-lane__head">
-    <div class="pf-lane__num">L / 05</div>
-    <h2 class="pf-lane__title">Photography<br>&amp; Ads</h2>
-    <div>
-      <p class="pf-lane__copy">Studio and on-location shoots, paired with paid creative for Meta, TikTok, and Google.</p>
-      <ul class="pf-lane__tags">
-        <li>Studio portraits</li>
-        <li>On-location campaigns</li>
-        <li>Paid social creative</li>
-        <li>UGC kits</li>
+        <li>Portraits &amp; editorial</li>
+        <li>Performance &amp; on-location</li>
+        <li>Cover art &amp; lookbooks</li>
+        <li>Brand &amp; product imagery</li>
       </ul>
     </div>
   </div>
@@ -499,18 +430,93 @@
       </div>
     </a>
   </div>
+  <!-- PLACEHOLDER: Nam is dropping refreshed photography assets in here. -->
+  <div class="pf-placeholder" data-placeholder="More photography coming — refresh from Nam"></div>
+</section>
+
+<!-- LANE 03 · GRAPHIC DESIGN -->
+<section id="lane-03" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 03</div>
+    <h2 class="pf-lane__title">Graphic<br>Design</h2>
+    <div>
+      <ul class="pf-lane__tags">
+        <li>Identity &amp; logos</li>
+        <li>Posters &amp; cover art</li>
+        <li>Brand systems &amp; guidelines</li>
+        <li>Editorial &amp; layout</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--big">
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/loko-poster.png" style="background-image: url('../assets/portfolio/loko-poster.png');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Graphic Design</span>
+        <h3 class="pf-card__name">Loko Poster</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/rodney-tristan-pyos-poster.png" style="background-image: url('../assets/portfolio/rodney-tristan-pyos-poster.png');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Rodney Tristan</span>
+        <h3 class="pf-card__name">PYOS Poster</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/wndy.png" style="background-image: url('../assets/portfolio/wndy.png');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Cover Art</span>
+        <h3 class="pf-card__name">WNDY</h3>
+      </div>
+    </a>
+  </div>
+  <!-- PLACEHOLDER: Nam will swap in the updated graphic design selects. -->
+  <div class="pf-placeholder" data-placeholder="Updated graphic design selects — refresh from Nam"></div>
+</section>
+
+<!-- LANE 04 · WEBSITE (SEO merged in) -->
+<section id="lane-04" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 04</div>
+    <h2 class="pf-lane__title">Website</h2>
+    <div>
+      <ul class="pf-lane__tags">
+        <li>Custom marketing &amp; product sites</li>
+        <li>Shopify, CMS, &amp; headless builds</li>
+        <li>SEO &amp; on-page visibility</li>
+        <li>Maintenance &amp; retainers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--landscape">
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/boba-religion-website.png" style="background-image: url('../assets/portfolio/boba-religion-website.png'); background-position: top center;">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Web Design</span>
+        <h3 class="pf-card__name">Boba Religion</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/sgf-sourcing-website.png" style="background-image: url('../assets/portfolio/sgf-sourcing-website.png'); background-position: top center;">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">SGF Sourcing</span>
+        <h3 class="pf-card__name">Sourcing Platform</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/viethome-website.png" style="background-image: url('../assets/portfolio/viethome-website.png'); background-position: top center;">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">VietHome</span>
+        <h3 class="pf-card__name">Website Mockup</h3>
+      </div>
+    </a>
+  </div>
 </section>
 
 <!-- CTA -->
-<!-- FINAL CTA BANNER -->
 <section class="section--tight">
   <div class="sell-cta">
     <div class="sell-cta__inner">
-      <div class="sell-cta__eyebrow">// Your move</div>
-      <h2 class="sell-cta__title">The next one<br>could be <em>you</em>.</h2>
+      <div class="sell-cta__eyebrow">// Your story</div>
+      <h2 class="sell-cta__title">The next story<br>could be <em>yours</em>.</h2>
       <div class="sell-cta__actions">
-        <a href="../contact/" class="sell-cta__btn sell-cta__btn--primary">Start a project &rarr;</a>
-        <a href="../portfolio/" class="sell-cta__btn sell-cta__btn--ghost">See the work</a>
+        <a href="../contact/" class="sell-cta__btn sell-cta__btn--primary">Tell us your story &rarr;</a>
+        <a href="../about/" class="sell-cta__btn sell-cta__btn--ghost">Meet the team</a>
       </div>
     </div>
   </div>

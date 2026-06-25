@@ -2,14 +2,20 @@
    404 [COME FIND ME] — shared stylesheet
    ========================================================================== */
 
-/* Druk Wide Bold — drop a licensed font file at /fonts/druk-wide-bold.woff2
-   (and optional .woff) to use the real thing. Falls back to Archivo Black
-   when the file isn't present. */
+/* Brand fonts — licensed files live in /fonts.
+   Druk Wide Bold = all titles/headliners.
+   Acumin Pro Semibold = all subtext / supporting copy. */
 @font-face {
   font-family: "Druk Wide Bold";
-  src: url("../fonts/druk-wide-bold.woff2") format("woff2"),
-       url("../fonts/druk-wide-bold.woff") format("woff");
+  src: url("../fonts/DrukWideBold.ttf") format("truetype");
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Acumin Pro Semibold";
+  src: url("../fonts/Acumin-SemiboldPro.otf") format("opentype");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -26,7 +32,7 @@
   --grey-300: #aaa;
 
   --font-display: "Druk Wide Bold", "Archivo Black", "Anton", Impact, sans-serif;
-  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Acumin Pro Semibold", "Archivo", "Helvetica Neue", Arial, sans-serif;
 
   --maxw: 1400px;
   --pad: clamp(20px, 4vw, 60px);
@@ -112,7 +118,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 0.95;
   letter-spacing: -0.01em;
 }
-.display--xl { font-size: clamp(48px, 10vw, 140px); }
+.display--xl { font-size: clamp(36px, 7.5vw, 105px); } /* 25% smaller than original 10vw / 140px */
 .display--lg { font-size: clamp(40px, 7vw, 96px); }
 .display--md { font-size: clamp(32px, 5vw, 64px); }
 .display--sm { font-size: clamp(22px, 3vw, 36px); }
@@ -663,7 +669,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 20px;
 }
 .sell-cta__title {
-  font-family: "Archivo Black", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(40px, 7vw, 88px);
   line-height: 0.95; letter-spacing: -0.02em;
   margin-bottom: 40px;

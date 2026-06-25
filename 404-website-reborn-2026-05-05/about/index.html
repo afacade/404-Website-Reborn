@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — 404 [Come Find Me]</title>
+  <!-- Preload brand fonts so headings don't flash -->
+  <link rel="preload" href="../fonts/DrukWideBold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="../fonts/Acumin-SemiboldPro.otf" as="font" type="font/otf" crossorigin>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Archivo+Black&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=5">
   <style>
     body { background: #000; color: #fff; }
     .nav { mix-blend-mode: normal; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
@@ -103,6 +107,29 @@
       transition: background .2s, color .2s;
     }
     .sell-card__cta:hover { background: #fff; color: #000; }
+
+    /* Placeholder slot for incoming content */
+    .about-placeholder {
+      max-width: 900px; margin: 0 auto;
+      padding: 36px 28px;
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: 14px;
+      text-align: center;
+    }
+    .about-placeholder__tag {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--yellow);
+      margin-bottom: 12px;
+    }
+    .about-placeholder__copy {
+      font-family: var(--font-display);
+      font-size: 14px; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-300);
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -121,7 +148,7 @@
 <section class="page-hero">
   <!-- REPLACE: About page hero background. 1600x900 (16:9). -->
   <div class="page-hero__bg" style="background-image: url('../assets/about/about-hero.jpg');"></div>
-  <h1 class="display display--xl">About<br>Us</h1>
+  <h1 class="display display--xl">The people<br>behind it.</h1>
 </section>
 
 <!-- MEET THE TEAM VIDEO -->
@@ -137,19 +164,19 @@
 
 <!-- VALUES TITLE -->
 <section class="section--tight center">
-  <h2 class="display display--md">Helping<br>Forward-Thinking Clients<br>[ Move First ]</h2>
+  <h2 class="display display--md">Helping the people<br>worth finding<br>[ get found ]</h2>
   <div class="values">
     <div class="value-card value-card--cyan">
-      <h3 class="value-card__title">Creative</h3>
-      <p class="value-card__body">Our services expand into videography, photography, graphic design, website improvements, e-commerce, and CMS/website development.</p>
+      <h3 class="value-card__title">Heart</h3>
+      <p class="value-card__body">We work in photo, video, design, and web &mdash; and we only take on stories we&rsquo;d be proud to tell.</p>
     </div>
     <div class="value-card value-card--yellow">
-      <h3 class="value-card__title">Flexible</h3>
-      <p class="value-card__body">We offer multiple packages so that no matter who our clients are, where they're starting from, and what's available to them, 404 can help in the best way possible.</p>
+      <h3 class="value-card__title">Lane</h3>
+      <p class="value-card__body">Different artists, different athletes, different brands &mdash; same care. We meet you wherever your story is starting.</p>
     </div>
     <div class="value-card value-card--pink">
-      <h3 class="value-card__title">Momentum</h3>
-      <p class="value-card__body">Our only job is to turn our years of experience into helping others come find you.</p>
+      <h3 class="value-card__title">Pulse</h3>
+      <p class="value-card__body">Years of making things, turned into helping other people get found by the right ones.</p>
     </div>
   </div>
 </section>
@@ -165,64 +192,15 @@
   </div>
 </section>
 
-<!-- ============================================== -->
-<!-- MOCKUP A — SERVICES / PACKAGES                 -->
-<!-- Selling angle: clear offers + price anchoring  -->
-<!-- ============================================== -->
-<section class="section--tight">
-  <div class="sell-services">
-    <div class="sell-services__eyebrow">// What we offer</div>
-    <h2 class="sell-services__title">Pick the package<br>that moves you first.</h2>
-    <div class="sell-services__grid">
-      <div class="sell-card sell-card--cyan">
-        <div class="sell-card__tag">// Capture</div>
-        <h3 class="sell-card__name">Visual</h3>
-        <p class="sell-card__price">Starting at <strong>$1,200</strong> / project</p>
-        <ul class="sell-card__list">
-          <li>Photography &amp; videography</li>
-          <li>Edited deliverables in 7 days</li>
-          <li>Raw files included</li>
-          <li>Usage rights, no strings</li>
-        </ul>
-        <a href="../contact/" class="sell-card__cta">Start a shoot →</a>
-      </div>
-      <div class="sell-card sell-card--yellow">
-        <div class="sell-card__tag">// Build</div>
-        <h3 class="sell-card__name">Web</h3>
-        <p class="sell-card__price">Starting at <strong>$3,500</strong> / site</p>
-        <ul class="sell-card__list">
-          <li>Custom design &amp; build</li>
-          <li>CMS or e-commerce ready</li>
-          <li>Mobile-first, fast as hell</li>
-          <li>30 days of post-launch support</li>
-        </ul>
-        <a href="../contact/" class="sell-card__cta">Get a quote →</a>
-      </div>
-      <div class="sell-card sell-card--pink">
-        <div class="sell-card__tag">// Brand</div>
-        <h3 class="sell-card__name">Full Stack</h3>
-        <p class="sell-card__price">Custom — let's talk</p>
-        <ul class="sell-card__list">
-          <li>Identity, content &amp; web</li>
-          <li>Ongoing creative direction</li>
-          <li>Quarterly campaign drops</li>
-          <li>Priority access to the team</li>
-        </ul>
-        <a href="../contact/" class="sell-card__cta">Book a call →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA BANNER -->
+<!-- CTA -->
 <section class="section--tight">
   <div class="sell-cta">
     <div class="sell-cta__inner">
-      <div class="sell-cta__eyebrow">// Your move</div>
-      <h2 class="sell-cta__title">The next one<br>could be <em>you</em>.</h2>
+      <div class="sell-cta__eyebrow">// Your story</div>
+      <h2 class="sell-cta__title">The next story<br>could be <em>yours</em>.</h2>
       <div class="sell-cta__actions">
-        <a href="../contact/" class="sell-cta__btn sell-cta__btn--primary">Start a project →</a>
-        <a href="../portfolio/" class="sell-cta__btn sell-cta__btn--ghost">See the work</a>
+        <a href="../contact/" class="sell-cta__btn sell-cta__btn--primary">Tell us your story &rarr;</a>
+        <a href="../about/" class="sell-cta__btn sell-cta__btn--ghost">Meet the team</a>
       </div>
     </div>
   </div>
