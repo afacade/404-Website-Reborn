@@ -17,7 +17,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
   <style>
     /* ===== Performance Agency homepage ===== */
     body.v2 { background: #000; color: #fff; }
@@ -211,6 +211,20 @@
     .v2-showcase__more {
       margin-top: 36px; display: flex; justify-content: center;
     }
+    /* Compact selected-work trio inside the merged highlights section */
+    .v2-showcase__trio {
+      margin-top: 32px; display: grid;
+      grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .v2-showcase__trio .v2-sc-card { aspect-ratio: 4 / 5; }
+    @media (max-width: 720px) { .v2-showcase__trio { grid-template-columns: 1fr; } }
+    /* Secondary web row that balances the Featured · Web block */
+    .v2-feature__more {
+      margin-top: 14px; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .v2-feature__more .v2-sc-card { aspect-ratio: 16 / 9; }
+    @media (max-width: 720px) { .v2-feature__more { grid-template-columns: 1fr; } }
     .v2-sc-card {
       position: relative; border-radius: 14px; overflow: hidden;
       background: var(--grey-900); background-size: cover; background-position: center;
@@ -372,24 +386,7 @@
   </a>
 </section>
 
-<section id="main" class="v2-hero">
-<h1 class="v2-hero__headline">Turning visions into <span>experiences</span> worth finding.</h1>
-  <div class="v2-hero__lower">
-    <p class="v2-hero__sub">With global operations including photography, videography, graphic design, website development, and SEO services, we are well equipped to help the world [COME FIND YOU]. </p>
-    <div class="v2-hero__cta">
-      <a class="v2-btn v2-btn--primary" href="portfolio/">See case studies &rarr;</a>
-      <a class="v2-btn v2-btn--ghost" href="contact/">Book intro call</a>
-    </div>
-  </div>
-</section>
-
-<section class="v2-stats">
-  <div class="v2-stat"><div class="v2-stat__num"><em>10</em>+</div><div class="v2-stat__label">Brands shipped</div></div>
-  <div class="v2-stat"><div class="v2-stat__num"><em>4.9</em>/5</div><div class="v2-stat__label">Avg. client rating</div></div>
-  <div class="v2-stat"><div class="v2-stat__num"><em>92</em>%</div><div class="v2-stat__label">Repeat &amp; referral</div></div>
-</section>
-
-<!-- ───── HIGHLIGHTS — visuals first ───── -->
+<!-- ───── HIGHLIGHTS — visuals first, merged reel + selected work ───── -->
 <section id="main" class="v2-showreel">
   <div class="v2-section-eyebrow">// Visions, in motion</div>
   <h2 class="v2-section-title">The work, first.</h2>
@@ -408,37 +405,48 @@
       <h3 class="v2-reel__name">NFL Highlight Reel</h3>
     </div>
   </div>
-</section>
 
-<!-- ───── HIGHLIGHTS GRID — rebuilt to match portfolio language ───── -->
-<section class="v2-showcase">
-  <div class="v2-section-eyebrow">// Selected stories</div>
-  <h2 class="v2-section-title">Visions, becoming real.</h2>
-  <div class="v2-showcase__featured">
-    <a class="v2-sc-card v2-sc-card--big" href="portfolio/#lane-01" data-bg="assets/home/rodney-tristan-portrait.jpg">
+  <!-- Selected stories — smaller assets, owned work only -->
+  <div class="v2-showcase__trio">
+    <a class="v2-sc-card" href="portfolio/#lane-01" data-bg="assets/home/wndy.png">
       <div class="v2-sc-card__inner">
-        <span class="v2-sc-card__client">Portrait &middot; Story</span>
-        <h3 class="v2-sc-card__name">Rodney Tristan</h3>
+        <span class="v2-sc-card__client">Photography</span>
+        <h3 class="v2-sc-card__name">WNDY</h3>
       </div>
     </a>
-    <div class="v2-showcase__side">
-      <a class="v2-sc-card" href="portfolio/#lane-03" data-bg="assets/home/loko-poster.png">
-        <div class="v2-sc-card__inner">
-          <span class="v2-sc-card__client">Graphic Design</span>
-          <h3 class="v2-sc-card__name">Loko Poster</h3>
-        </div>
-      </a>
-      <a class="v2-sc-card" href="portfolio/#lane-01" data-bg="assets/home/wndy.png">
-        <div class="v2-sc-card__inner">
-          <span class="v2-sc-card__client">Photography</span>
-          <h3 class="v2-sc-card__name">WNDY</h3>
-        </div>
-      </a>
-    </div>
+    <a class="v2-sc-card" href="portfolio/#lane-03" data-bg="assets/home/loko-poster.png">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">Graphic Design</span>
+        <h3 class="v2-sc-card__name">Loko Poster</h3>
+      </div>
+    </a>
+    <a class="v2-sc-card" href="portfolio/#lane-01" data-bg="assets/portfolio/jeremy-zucker.png">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">Artist Portrait</span>
+        <h3 class="v2-sc-card__name">Jeremy Zucker</h3>
+      </div>
+    </a>
   </div>
   <div class="v2-showcase__more">
     <a class="v2-btn v2-btn--ghost" href="portfolio/">See the full portfolio &rarr;</a>
   </div>
+</section>
+
+<section class="v2-hero">
+<h1 class="v2-hero__headline">Turning ideas into <span>experiences</span>.</h1>
+  <div class="v2-hero__lower">
+    <p class="v2-hero__sub">With global expertise in photography, videography, graphic design, website development, and SEO, we&rsquo;re equipped to help the world [COME FIND YOU].</p>
+    <div class="v2-hero__cta">
+      <a class="v2-btn v2-btn--primary" href="portfolio/">See the portfolio &rarr;</a>
+      <a class="v2-btn v2-btn--ghost" href="contact/">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<section class="v2-stats">
+  <div class="v2-stat"><div class="v2-stat__num"><em>5</em></div><div class="v2-stat__label">Crafts under one roof &mdash; photo, video, design, web &amp; SEO</div></div>
+  <div class="v2-stat"><div class="v2-stat__num"><em>SF</em></div><div class="v2-stat__label">Made in San Francisco, sent worldwide</div></div>
+  <div class="v2-stat"><div class="v2-stat__num">&rsquo;<em>24</em></div><div class="v2-stat__label">Helping the world come find you</div></div>
 </section>
 
 <!-- FEATURED WEBSITE — rewritten -->
@@ -451,6 +459,20 @@
       <h3 class="v2-feature__title">A platform that opens doors.</h3>
       <p class="v2-feature__copy">We built a home for SGF Sourcing&rsquo;s story, one where the right partners can find them and the rest of the world can feel what they do.</p>
     </div>
+  </div>
+  <div class="v2-feature__more">
+    <a class="v2-sc-card" href="portfolio/#lane-04" data-bg="assets/portfolio/boba-religion-website.png" style="background-position: top center;">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">Web Design</span>
+        <h3 class="v2-sc-card__name">Boba Religion</h3>
+      </div>
+    </a>
+    <a class="v2-sc-card" href="portfolio/#lane-04" data-bg="assets/portfolio/viethome-website.png" style="background-position: top center;">
+      <div class="v2-sc-card__inner">
+        <span class="v2-sc-card__client">VietHome</span>
+        <h3 class="v2-sc-card__name">Website Mockup</h3>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -507,10 +529,8 @@
     <a href="contact/">Contact</a>
   </div>
   <div class="footer__col footer__col--right">
-    <a href="#">Instagram</a><br>
-    <a href="#">YouTube</a><br>
-    404cfm<br>
-    @gmail.com
+    <a href="https://instagram.com/404.cfm" target="_blank" rel="noopener">Instagram</a><br>
+    <a href="mailto:404cfm@gmail.com">404cfm@gmail.com</a>
   </div>
 </footer>
 

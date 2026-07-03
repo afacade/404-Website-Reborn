@@ -453,29 +453,42 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: clamp(20px, 3vw, 40px);
 }
 .value-card {
+  position: relative;
   aspect-ratio: 1 / 0.75;
   padding: clamp(24px, 3vw, 40px);
   display: flex;
   flex-direction: column;
   gap: 20px;
-  color: var(--black);
+  color: var(--white);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--grey-900);
+  overflow: hidden;
 }
-.value-card--cyan { background: var(--cyan); }
-.value-card--yellow { background: var(--yellow); }
-.value-card--pink { background: var(--pink); }
+/* Gradients of the three brand colors, not three solid blocks */
+.value-card--cyan   { background: radial-gradient(circle at 25% 15%, rgba(76,233,255,0.30), transparent 60%), var(--grey-900); }
+.value-card--yellow { background: radial-gradient(circle at 50% 15%, rgba(255,205,46,0.28), transparent 60%), var(--grey-900); }
+.value-card--pink   { background: radial-gradient(circle at 75% 15%, rgba(255,60,188,0.30), transparent 60%), var(--grey-900); }
 .value-card__title {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2vw, 28px);
+  font-size: clamp(18px, 1.8vw, 26px);
   text-transform: uppercase;
   text-align: center;
+  line-height: 1.05;
+  background: linear-gradient(90deg, var(--cyan), var(--pink), var(--yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 .value-card__body {
-  font-family: var(--font-display);
-  font-size: clamp(13px, 1vw, 15px);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.1vw, 16px);
+  letter-spacing: 0.01em;
+  text-transform: none;
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: var(--grey-300);
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -596,11 +609,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .about-story__body {
   margin-top: 20px;
-  font-family: var(--font-display);
-  font-size: clamp(12px, 1.1vw, 15px);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  line-height: 1.8;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 17px);
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1.7;
   color: var(--grey-300);
 }
 
