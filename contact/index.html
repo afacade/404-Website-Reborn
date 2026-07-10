@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=5">
+  <link rel="stylesheet" href="../css/style.css?v=6">
   <style>
     body { background: #000; color: #fff; }
     .nav { mix-blend-mode: normal; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
@@ -55,9 +55,10 @@
       margin-bottom: 18px;
     }
     .contact-glow__title {
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(36px, 5vw, 64px);
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.4vw, 60px);
       line-height: 0.95; letter-spacing: -0.02em;
+      text-transform: uppercase;
       margin-bottom: 18px;
     }
     .contact-glow__title em {
@@ -113,7 +114,8 @@
   <div class="contact-glow__inner">
     <div class="contact-glow__head">
       <div class="contact-glow__eyebrow">// Tell us your story</div>
-      <h2 class="contact-glow__title">Bring us<br>a vision.<br><em>We'll reply in 24 hours.</em></h2>
+      <h2 class="contact-glow__title">Bring us your <em>vision</em>.</h2>
+      <p class="contact-glow__copy">We'll reply in 24 hours.</p>
     </div>
     <form class="contact-form" novalidate>
       <div class="contact-form__row">
@@ -149,10 +151,8 @@
     <a href="../contact/">Contact</a>
   </div>
   <div class="footer__col footer__col--right">
-    <a href="#">Instagram</a><br>
-    <a href="#">YouTube</a><br>
-    404cfm<br>
-    @gmail.com
+    <a href="https://instagram.com/404.cfm" target="_blank" rel="noopener">Instagram</a><br>
+    <a href="mailto:404cfm@gmail.com">404cfm@gmail.com</a>
   </div>
 </footer>
 

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=5">
+  <link rel="stylesheet" href="../css/style.css?v=6">
   <style>
     /* ===== Portfolio · Lane-by-Lane ===== */
     body.pf { background: #000; color: #fff; }
@@ -50,6 +50,33 @@
       font-size: 17px; line-height: 1.6;
       color: var(--grey-300);
       max-width: 64ch;
+    }
+
+    /* Video banner variant — content hits instantly over a looping reel */
+    .pf-hero--video {
+      max-width: none; margin: 0;
+      position: relative;
+      min-height: 68vh;
+      display: flex; align-items: flex-end;
+      padding: 0; overflow: hidden;
+    }
+    .pf-hero__video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      z-index: 0;
+    }
+    .pf-hero__overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 100%);
+    }
+    .pf-hero__content {
+      position: relative; z-index: 2;
+      max-width: var(--maxw); margin: 0 auto; width: 100%;
+      padding: 0 var(--pad) 56px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pf-hero__video { display: none; }
+      .pf-hero--video { background: #111; min-height: 48vh; }
     }
 
     /* Lane navigator chips */
@@ -336,32 +363,76 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="pf-hero">
-  <div class="pf-eyebrow">// Four lanes &middot; One bench</div>
-  <h1 class="pf-hero__title">Port<span>folio.</span></h1>
-  <p class="pf-hero__sub">Read straight through, or jump to a lane. The work, side by side with the stories behind it &mdash; from a first shutter to a fully-built home on the web.</p>
+<!-- HERO — video banner -->
+<section class="pf-hero pf-hero--video">
+  <video class="pf-hero__video" autoplay muted loop playsinline poster="../assets/posters/jpwebsitebanner-poster.jpg">
+    <source src="../assets/home/jpwebsitebanner.m4v" type="video/mp4">
+  </video>
+  <div class="pf-hero__overlay"></div>
+  <div class="pf-hero__content">
+    <div class="pf-eyebrow">// Four lanes &middot; One bench</div>
+    <h1 class="pf-hero__title">Port<span>folio.</span></h1>
+    <p class="pf-hero__sub">Read straight through, or jump to a lane. The work, side by side with the stories behind it &mdash; from a first shutter to a fully-built home on the web.</p>
+  </div>
 </section>
 
 <!-- LANE NAVIGATOR -->
 <nav class="pf-nav">
-  <a href="#lane-01"><span>01</span> Videography</a>
-  <a href="#lane-02"><span>02</span> Photography</a>
+  <a href="#lane-01"><span>01</span> Photography</a>
+  <a href="#lane-02"><span>02</span> Videography</a>
   <a href="#lane-03"><span>03</span> Graphic Design</a>
   <a href="#lane-04"><span>04</span> Website</a>
 </nav>
 
-<!-- LANE 01 · VIDEOGRAPHY -->
+<!-- LANE 01 · PHOTOGRAPHY -->
 <section id="lane-01" class="pf-lane">
   <div class="pf-lane__head">
     <div class="pf-lane__num">L / 01</div>
+    <h2 class="pf-lane__title">Photography</h2>
+    <div>
+      <ul class="pf-lane__tags">
+        <li>Portraits &amp; editorial</li>
+        <li>Events &amp; live coverage</li>
+        <li>Brand &amp; commercial</li>
+        <li>Fashion &amp; product</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf-grid--big">
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/jeremy-zucker.png" style="background-image: url('../assets/portfolio/jeremy-zucker.png');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Artist Portrait</span>
+        <h3 class="pf-card__name">Jeremy Zucker</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/ryan-santamaria.png" style="background-image: url('../assets/portfolio/ryan-santamaria.png');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Artist Photography</span>
+        <h3 class="pf-card__name">Ryan Santamaria</h3>
+      </div>
+    </a>
+    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/u-and-i-music-cover.png" style="background-image: url('../assets/portfolio/u-and-i-music-cover.png');">
+      <div class="pf-card__inner">
+        <span class="pf-card__client">Music Cover</span>
+        <h3 class="pf-card__name">U &amp; I</h3>
+      </div>
+    </a>
+  </div>
+  <!-- PLACEHOLDER: Nam is dropping refreshed photography assets in here. -->
+  <div class="pf-placeholder" data-placeholder="More photography coming — refresh from Nam"></div>
+</section>
+
+<!-- LANE 02 · VIDEOGRAPHY -->
+<section id="lane-02" class="pf-lane">
+  <div class="pf-lane__head">
+    <div class="pf-lane__num">L / 02</div>
     <h2 class="pf-lane__title">Videography</h2>
     <div>
       <ul class="pf-lane__tags">
         <li>Highlight reels</li>
-        <li>Brand &amp; performance films</li>
-        <li>Music &amp; concert edits</li>
-        <li>Social cutdowns (9:16 / 1:1)</li>
+        <li>Commercial videos</li>
+        <li>Cinematic films</li>
+        <li>Social content</li>
       </ul>
     </div>
   </div>
@@ -396,44 +467,6 @@
   </div>
 </section>
 
-<!-- LANE 02 · PHOTOGRAPHY -->
-<section id="lane-02" class="pf-lane">
-  <div class="pf-lane__head">
-    <div class="pf-lane__num">L / 02</div>
-    <h2 class="pf-lane__title">Photography</h2>
-    <div>
-      <ul class="pf-lane__tags">
-        <li>Portraits &amp; editorial</li>
-        <li>Performance &amp; on-location</li>
-        <li>Cover art &amp; lookbooks</li>
-        <li>Brand &amp; product imagery</li>
-      </ul>
-    </div>
-  </div>
-  <div class="pf-grid--big">
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/jeremy-zucker.png" style="background-image: url('../assets/portfolio/jeremy-zucker.png');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Artist Portrait</span>
-        <h3 class="pf-card__name">Jeremy Zucker</h3>
-      </div>
-    </a>
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/ryan-santamaria.png" style="background-image: url('../assets/portfolio/ryan-santamaria.png');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Artist Photography</span>
-        <h3 class="pf-card__name">Ryan Santamaria</h3>
-      </div>
-    </a>
-    <a class="pf-card" href="#" data-lightbox="../assets/portfolio/u-and-i-music-cover.png" style="background-image: url('../assets/portfolio/u-and-i-music-cover.png');">
-      <div class="pf-card__inner">
-        <span class="pf-card__client">Music Cover</span>
-        <h3 class="pf-card__name">U &amp; I</h3>
-      </div>
-    </a>
-  </div>
-  <!-- PLACEHOLDER: Nam is dropping refreshed photography assets in here. -->
-  <div class="pf-placeholder" data-placeholder="More photography coming — refresh from Nam"></div>
-</section>
-
 <!-- LANE 03 · GRAPHIC DESIGN -->
 <section id="lane-03" class="pf-lane">
   <div class="pf-lane__head">
@@ -441,10 +474,10 @@
     <h2 class="pf-lane__title">Graphic<br>Design</h2>
     <div>
       <ul class="pf-lane__tags">
-        <li>Identity &amp; logos</li>
-        <li>Posters &amp; cover art</li>
-        <li>Brand systems &amp; guidelines</li>
-        <li>Editorial &amp; layout</li>
+        <li>Brand identity</li>
+        <li>Marketing collateral</li>
+        <li>Album &amp; cover art</li>
+        <li>Brand guidelines</li>
       </ul>
     </div>
   </div>
@@ -534,10 +567,8 @@
     <a href="../contact/">Contact</a>
   </div>
   <div class="footer__col footer__col--right">
-    <a href="#">Instagram</a><br>
-    <a href="#">YouTube</a><br>
-    404cfm<br>
-    @gmail.com
+    <a href="https://instagram.com/404.cfm" target="_blank" rel="noopener">Instagram</a><br>
+    <a href="mailto:404cfm@gmail.com">404cfm@gmail.com</a>
   </div>
 </footer>
 

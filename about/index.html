@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=5">
+  <link rel="stylesheet" href="../css/style.css?v=6">
   <style>
     body { background: #000; color: #fff; }
     .nav { mix-blend-mode: normal; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
@@ -32,9 +32,9 @@
       width: 100%;
       border-radius: 16px;
       display: block;
-      background: #111;
-      max-height: 70vh;
-      object-fit: cover;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
     }
 
     /* ==== MOCKUP A — Services / Packages ==== */
@@ -148,7 +148,7 @@
 <section class="page-hero">
   <!-- REPLACE: About page hero background. 1600x900 (16:9). -->
   <div class="page-hero__bg" style="background-image: url('../assets/about/about-hero.jpg');"></div>
-  <h1 class="display display--xl">The people<br>behind it.</h1>
+  <h1 class="display display--xl">Every story is worth<br>getting found.</h1>
 </section>
 
 <!-- MEET THE TEAM VIDEO -->
@@ -167,21 +167,21 @@
   <h2 class="display display--md">Helping the people<br>worth finding<br>[ get found ]</h2>
   <div class="values">
     <div class="value-card value-card--cyan">
-      <h3 class="value-card__title">Heart</h3>
-      <p class="value-card__body">We work in photo, video, design, and web &mdash; and we only take on stories we&rsquo;d be proud to tell.</p>
+      <h3 class="value-card__title">Vision to reality</h3>
+      <p class="value-card__body">We take what you can already see in your head and make it something real &mdash; in photo, video, design, and web.</p>
     </div>
     <div class="value-card value-card--yellow">
-      <h3 class="value-card__title">Lane</h3>
-      <p class="value-card__body">Different artists, different athletes, different brands &mdash; same care. We meet you wherever your story is starting.</p>
+      <h3 class="value-card__title">Concept to completion</h3>
+      <p class="value-card__body">From the first idea to the final hand-off, we carry the whole thing &mdash; so nothing gets lost along the way.</p>
     </div>
     <div class="value-card value-card--pink">
-      <h3 class="value-card__title">Pulse</h3>
-      <p class="value-card__body">Years of making things, turned into helping other people get found by the right ones.</p>
+      <h3 class="value-card__title">Ideas into experiences</h3>
+      <p class="value-card__body">The goal is never just a file. It&rsquo;s something people feel, remember, and come find you for.</p>
     </div>
   </div>
 </section>
 
-<!-- STORY -->
+<!-- STORY — per feedback, the page ends here; content/assets get added below later -->
 <section class="section--tight">
   <div class="about-story">
     <h2 class="display display--md">We've been dreaming and creating since we were 17.</h2>
@@ -189,20 +189,6 @@
       Our journey started with a passion for capturing meaningful stories and helping others display them in the ever-growing digital world.
       Through our love for our craft, we've met so many amazing people, and the next one could be you.
     </p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section--tight">
-  <div class="sell-cta">
-    <div class="sell-cta__inner">
-      <div class="sell-cta__eyebrow">// Your story</div>
-      <h2 class="sell-cta__title">The next story<br>could be <em>yours</em>.</h2>
-      <div class="sell-cta__actions">
-        <a href="../contact/" class="sell-cta__btn sell-cta__btn--primary">Tell us your story &rarr;</a>
-        <a href="../about/" class="sell-cta__btn sell-cta__btn--ghost">Meet the team</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -219,10 +205,8 @@
     <a href="../contact/">Contact</a>
   </div>
   <div class="footer__col footer__col--right">
-    <a href="#">Instagram</a><br>
-    <a href="#">YouTube</a><br>
-    404cfm<br>
-    @gmail.com
+    <a href="https://instagram.com/404.cfm" target="_blank" rel="noopener">Instagram</a><br>
+    <a href="mailto:404cfm@gmail.com">404cfm@gmail.com</a>
   </div>
 </footer>
 
